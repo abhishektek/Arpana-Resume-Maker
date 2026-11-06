@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>ResumeCraft Pro — Clean Mobile & Desktop Studio</title>
+<title>ResumeCraft Pro — Section Styling & Rich Formatting Studio</title>
 <style>
 :root {
   --primary: #2563eb;
@@ -24,9 +24,7 @@ body {
   padding-bottom: 20px;
 }
 
-/* ==========================================================================
-   TOP HEADER
-   ========================================================================== */
+/* HEADER */
 header {
   background: #ffffff;
   padding: 10px 16px;
@@ -75,9 +73,7 @@ button:active { transform: scale(0.96); }
 .btn-danger { background: #fee2e2; color: #b91c1c; }
 .btn-success { background: #ecfdf5; color: #059669; border: 1px solid #a7f3d0; }
 
-/* ==========================================================================
-   CAROUSEL SLIDER (TEMPLATES SHOWCASE)
-   ========================================================================== */
+/* CAROUSEL */
 .carousel-section {
   background: #f8fafc;
   padding: 22px 14px 18px;
@@ -158,7 +154,6 @@ button:active { transform: scale(0.96); }
 .arrow-prev { left: -8px; }
 .arrow-next { right: -8px; }
 
-/* THUMBNAIL PREVIEW CARD */
 .card-preview-stage {
   width: 240px;
   height: 340px;
@@ -232,7 +227,7 @@ main {
   margin: 16px auto;
   padding: 0 16px;
   display: grid;
-  grid-template-columns: 490px minmax(0, 1fr);
+  grid-template-columns: 500px minmax(0, 1fr);
   gap: 24px;
   align-items: start;
 }
@@ -271,11 +266,13 @@ main {
 .persona-btn { background: #fff; color: #1e40af; border: 1.5px solid #bfdbfe; padding: 5px 9px; border-radius: 6px; font-size: 11px; }
 .persona-btn:hover { background: #2563eb; color: #fff; border-color: #2563eb; }
 
-/* CARDS & INPUTS */
+/* ==========================================================================
+   CARDS & SECTION TOOLBAR CONTROLLERS (NEW CUSTOM STYLING PER SECTION)
+   ========================================================================== */
 .card {
   border: 1px solid var(--border);
   border-radius: 8px;
-  margin-bottom: 12px;
+  margin-bottom: 14px;
   background: #fff;
   overflow: hidden;
 }
@@ -301,6 +298,60 @@ main {
   color: #0f172a;
   flex: 1;
 }
+
+/* SECTION FORMATTING TOOLBAR */
+.section-format-bar {
+  background: #f1f5f9;
+  border-bottom: 1px solid #e2e8f0;
+  padding: 6px 10px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.fmt-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 11px;
+  font-weight: 600;
+}
+.fmt-item select {
+  padding: 3px 6px;
+  font-size: 11px;
+  border-radius: 4px;
+  border: 1px solid #cbd5e1;
+  background: #fff;
+}
+.fmt-item input[type="color"] {
+  width: 24px;
+  height: 22px;
+  padding: 0;
+  border: 1px solid #cbd5e1;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.fmt-btn {
+  width: 24px;
+  height: 22px;
+  padding: 0;
+  font-weight: 900;
+  font-size: 11px;
+  border-radius: 4px;
+  border: 1px solid #cbd5e1;
+  background: #fff;
+  color: #334155;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.fmt-btn.active {
+  background: #2563eb;
+  color: #fff;
+  border-color: #2563eb;
+}
+
 .card-body { padding: 11px; display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
 .f-group { display: flex; flex-direction: column; gap: 3px; }
 .f-full { grid-column: 1 / -1; }
@@ -340,7 +391,7 @@ textarea { min-height: 56px; resize: vertical; line-height: 1.4; }
 }
 
 /* ==========================================================================
-   A4 PREVIEW CANVAS (ZERO CUTTING / ALWAYS CENTERED)
+   A4 PREVIEW CANVAS
    ========================================================================== */
 .preview-wrap {
   background: #475569;
@@ -365,7 +416,6 @@ textarea { min-height: 56px; resize: vertical; line-height: 1.4; }
 }
 .zoom-controls { display: flex; align-items: center; gap: 5px; background: rgba(0,0,0,0.35); padding: 4px 10px; border-radius: 20px; }
 
-/* THE ROOT A4 CONTAINER */
 .main-a4-paper {
   width: 794px !important;
   min-height: 1123px !important;
@@ -385,7 +435,6 @@ textarea { min-height: 56px; resize: vertical; line-height: 1.4; }
   width: 100%;
 }
 
-/* MARGIN & SPACING MODIFIERS */
 .margin-tight { padding: 28px 34px !important; }
 .margin-standard { padding: 40px 46px !important; }
 .margin-wide { padding: 50px 56px !important; }
@@ -401,7 +450,6 @@ textarea { min-height: 56px; resize: vertical; line-height: 1.4; }
 .space-spacious h2 { margin: 16px 0 8px !important; }
 .space-spacious p, .space-spacious li { margin: 3px 0 !important; line-height: 1.55 !important; }
 
-/* FONT SIZE MODIFIERS */
 .fsize-small { font-size: 10px !important; }
 .fsize-small h1 { font-size: 20px !important; }
 .fsize-small h2 { font-size: 11px !important; }
@@ -414,9 +462,7 @@ textarea { min-height: 56px; resize: vertical; line-height: 1.4; }
 .fsize-large h1 { font-size: 26px !important; }
 .fsize-large h2 { font-size: 13px !important; }
 
-.bold-headings h2, .bold-headings h1, .bold-headings strong { font-weight: 900 !important; }
-
-/* TOP DOCUMENT BANNER */
+/* DOCUMENT ELEMENTS */
 .doc-top-header { font-size: 20px; font-weight: 900; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 12px; color: #0f172a; }
 .doc-top-header.with-underline { border-bottom: 2px solid #0f172a; padding-bottom: 3px; display: inline-block; }
 .header-center { text-align: center; }
@@ -444,7 +490,6 @@ textarea { min-height: 56px; resize: vertical; line-height: 1.4; }
 }
 .photo-slot-box img { width: 100%; height: 100%; object-fit: cover; border-radius: 3px; }
 
-/* RESUME BASE ELEMENTS */
 h1 { font-size: 23px; line-height: 1.15; font-weight: 800; color: #0f172a; margin-bottom: 3px; }
 .role-title { font-size: 12.5px; color: #2563eb; font-weight: 700; margin-bottom: 4px; }
 h2 {
@@ -518,9 +563,7 @@ li { font-size: 10.5px; line-height: 1.45; color: #334155; margin-bottom: 2px; }
 .border-gold-royal .auspicious-symbol { color: #b45309; }
 .border-islamic-green { border: 4px solid #0f766e !important; }
 
-/* ==========================================================================
-   PERFECT PRINT & PDF RULES
-   ========================================================================== */
+/* PRINT MEDIA */
 @media print {
   html, body { background: #fff !important; padding: 0 !important; margin: 0 !important; width: 210mm !important; }
   header, .carousel-section, main > .panel:first-child, .preview-toolbar, .panel-head, .mobile-bottom-nav { 
@@ -544,13 +587,11 @@ li { font-size: 10.5px; line-height: 1.45; color: #334155; margin-bottom: 2px; }
   @page { size: A4 portrait; margin: 0; }
 }
 
-/* ==========================================================================
-   CLEAN MOBILE-SPECIFIC RULES (APP-LIKE VIEWS)
-   ========================================================================== */
+/* MOBILE APP VIEWS */
 .mobile-bottom-nav { display: none; }
 
 @media (max-width: 860px) {
-  body { padding-bottom: 90px !important; } /* Extra room so no input is blocked by bottom bar */
+  body { padding-bottom: 90px !important; }
   header { padding: 8px 12px; }
   .brand { font-size: 15px; }
   .header-actions { display: none; }
@@ -564,11 +605,9 @@ li { font-size: 10.5px; line-height: 1.45; color: #334155; margin-bottom: 2px; }
   .preview-panel-fixed { position: static; height: auto; }
   .preview-wrap { padding: 14px 6px; }
 
-  /* MOBILE FORM INPUTS OPTIMIZATION: NO CRAMPED COLUMNS */
   .card-body { grid-template-columns: 1fr; gap: 10px; }
   .card-body .f-group { grid-column: 1 / -1; }
 
-  /* MOBILE SCREEN ISOLATION: ONLY ACTIVE TAB IS VISIBLE */
   body.view-form .carousel-section { display: none !important; }
   body.view-form .preview-panel-fixed { display: none !important; }
   body.view-form .edit-panel { display: block !important; }
@@ -581,7 +620,6 @@ li { font-size: 10.5px; line-height: 1.45; color: #334155; margin-bottom: 2px; }
   body.view-preview .edit-panel { display: none !important; }
   body.view-preview .preview-panel-fixed { display: flex !important; }
 
-  /* MOBILE BOTTOM NAVIGATION BAR */
   .mobile-bottom-nav {
     display: flex;
     position: fixed;
@@ -635,9 +673,7 @@ li { font-size: 10.5px; line-height: 1.45; color: #334155; margin-bottom: 2px; }
   <input type="file" id="json-input" accept=".json" hidden>
 </header>
 
-<!-- ==========================================================================
-     CAROUSEL SLIDER (TEMPLATES SHOWCASE)
-     ========================================================================== -->
+<!-- CAROUSEL SLIDER -->
 <section class="carousel-section" id="carousel-section-anchor">
   <h1 class="carousel-title" id="carousel-main-title">40 Distinct Resume Formats</h1>
   <p class="carousel-subtitle" id="carousel-main-sub">Sidebars, Canva 50/50, Timelines, Bento Cards & ATS</p>
@@ -668,12 +704,12 @@ li { font-size: 10.5px; line-height: 1.45; color: #334155; margin-bottom: 2px; }
     <div class="persona-chips" id="persona-chips-bar"></div>
 
     <div id="form-scroll">
-      <!-- FONT & PRINT MARGIN SETTINGS -->
+      <!-- GLOBAL FONT & PRINT MARGIN SETTINGS -->
       <div class="card">
-        <div class="card-head">⚙️ Font, Page Spacing & Margins Controller</div>
+        <div class="card-head">⚙️ Global Page Spacing, Margins & Base Font</div>
         <div class="card-body">
           <div class="f-group">
-            <label>Font Family</label>
+            <label>Base Font Family</label>
             <select id="select-font-family">
               <option value="'Segoe UI', Roboto, sans-serif">Segoe UI / Modern Sans</option>
               <option value="'Georgia', serif">Georgia (Classic Serif)</option>
@@ -705,10 +741,6 @@ li { font-size: 10.5px; line-height: 1.45; color: #334155; margin-bottom: 2px; }
               <option value="space-normal" selected>Normal</option>
               <option value="space-spacious">Spacious</option>
             </select>
-          </div>
-          <div class="f-group f-full" style="flex-direction:row;align-items:center;gap:8px;margin-top:4px">
-            <input type="checkbox" id="check-bold-headings" style="width:auto;cursor:pointer">
-            <label for="check-bold-headings" style="text-transform:none;font-size:12px;color:#0f172a;cursor:pointer">Make all Headings & Titles Bold</label>
           </div>
         </div>
       </div>
@@ -777,7 +809,7 @@ li { font-size: 10.5px; line-height: 1.45; color: #334155; margin-bottom: 2px; }
         </div>
       </div>
 
-      <!-- DYNAMIC SECTIONS CONTAINER -->
+      <!-- DYNAMIC SECTIONS CONTAINER (WITH CUSTOM PER-SECTION FORMATTING BARS) -->
       <div id="dynamic-sections-container"></div>
 
       <!-- 5. BOTTOM EXTRA TRACKING ID BLOCK -->
@@ -824,7 +856,7 @@ li { font-size: 10.5px; line-height: 1.45; color: #334155; margin-bottom: 2px; }
   </section>
 </main>
 
-<!-- MOBILE BOTTOM NAVIGATION (RELIABLE TOUCH DELEGATION) -->
+<!-- MOBILE BOTTOM NAVIGATION -->
 <nav class="mobile-bottom-nav" id="mobile-nav-bar">
   <button class="mob-nav-btn active" data-mob-view="form">
     <span style="font-size:16px">✏️</span>
@@ -847,6 +879,15 @@ li { font-size: 10.5px; line-height: 1.45; color: #334155; margin-bottom: 2px; }
 <script>
 const $ = id => document.getElementById(id);
 const escapeHtml = str => String(str == null ? '' : str).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+
+/* RICH TEXT PARSER: Parses **bold**, *italic*, and __underline__ */
+function parseRichText(str) {
+  let s = escapeHtml(str);
+  s = s.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+  s = s.replace(/\*(.*?)\*/g, '<em>$1</em>');
+  s = s.replace(/__(.*?)__/g, '<u>$1</u>');
+  return s;
+}
 
 /* 40 RESUME TEMPLATES LIST */
 const RESUME_TEMPLATES = [
@@ -925,7 +966,17 @@ let appMode = 'resume';
 let currentCatFilter = 'all';
 let currentZoom = 1;
 
-/* RICH INITIAL RESUME STATE */
+/* HELPER: GET DEFAULT STYLING OBJECT FOR SECTIONS */
+const defaultStyle = (color = '') => ({
+  font: '',
+  size: '',
+  color: color || '',
+  bold: false,
+  italic: false,
+  underline: false
+});
+
+/* RICH INITIAL RESUME STATE (WITH CUSTOM STYLES PER SECTION) */
 const getInitialResumeState = () => ({
   docTitle: 'RESUME',
   docUnderline: true,
@@ -942,7 +993,6 @@ const getInitialResumeState = () => ({
   fontSizeClass: 'fsize-medium',
   pageMarginClass: 'margin-standard',
   pageSpacingClass: 'space-normal',
-  boldHeadings: false,
   tpl: 1,
   secOrder: ['personal_head', 'summary', 'exp', 'edu', 'skills', 'strengths', 'personal', 'dec'],
   sections: {
@@ -953,17 +1003,20 @@ const getInitialResumeState = () => ({
       role: 'Senior Freight & Logistics Analyst',
       email: 'abhishek.vlog@gmail.com',
       phone: '+91 9102952861',
-      location: 'Biyawani, Bihar Sharif, Nalanda, Bihar'
+      location: 'Biyawani, Bihar Sharif, Nalanda, Bihar',
+      style: defaultStyle('#1e40af')
     },
     summary: {
       t: 'Professional Summary',
       k: 'text',
-      v: 'A highly skilled and organized Logistics, Distribution and Supply Chain professional with 6+ years of excellence in corporate bookkeeping, inventory auditing, and freight management. Proven track record of optimizing supply chain workflows by 35% and delivering accurate financial reconciliations across cross-functional operations.'
+      v: 'A highly skilled and organized **Logistics, Distribution and Supply Chain** professional with 6+ years of excellence in corporate bookkeeping, inventory auditing, and freight management. Proven track record of optimizing supply chain workflows by 35% and delivering accurate financial reconciliations across cross-functional operations.',
+      style: defaultStyle()
     },
     exp: {
       t: 'Work Experience',
       k: 'lines',
-      v: '• Senior Freight Audit & Logistics Analyst — Ford Motor Co. (July 2021 - Present)\n  - Supervised freight billing audit cycles for 50+ regional carrier accounts, cutting invoice discrepancy costs by $120,000 annually.\n  - Automated quarterly supply chain reconciliation in SAP ERP, saving 15 hours of manual reporting every month.\n• Logistics Operations Specialist — Honda Logistics (May 2018 - June 2021)\n  - Managed end-to-end inbound dispatch and warehouse inventory tracking with a 99.4% on-time delivery metric.\n  - Led a team of 4 junior warehouse dispatchers and coordinated vendor compliance contracts.'
+      v: '• **Senior Freight Audit & Logistics Analyst** — Ford Motor Co. (July 2021 - Present)\n  - Supervised freight billing audit cycles for 50+ regional carrier accounts, cutting invoice discrepancy costs by $120,000 annually.\n  - Automated quarterly supply chain reconciliation in SAP ERP, saving 15 hours of manual reporting every month.\n• **Logistics Operations Specialist** — Honda Logistics (May 2018 - June 2021)\n  - Managed end-to-end inbound dispatch and warehouse inventory tracking with a 99.4% on-time delivery metric.\n  - Led a team of 4 junior warehouse dispatchers and coordinated vendor compliance contracts.',
+      style: defaultStyle()
     },
     edu: {
       t: 'Academic Qualification',
@@ -972,17 +1025,20 @@ const getInitialResumeState = () => ({
         { course: 'Postgraduate Diploma in Management Studies', school: 'University of Hertfordshire, Watford', year: '2020', marks: 'Distinction' },
         { course: 'Bachelor of Commerce (B.Com - Supply Chain)', school: 'Florida State University', year: '2018', marks: '3.8 CGPA / First Class' },
         { course: 'Senior Secondary School (Commerce & Maths)', school: 'St. Xavier Senior High School', year: '2015', marks: '88.50%' }
-      ]
+      ],
+      style: defaultStyle()
     },
     skills: {
       t: 'Core Technical & Professional Skills',
       k: 'lines',
-      v: '• Supply Chain & Freight Logistics\n• Advanced SAP ERP & Tally Prime\n• Financial Bookkeeping & Auditing\n• Advanced Microsoft Excel (VLOOKUP, Pivot, Macros)\n• Inventory Optimization & Vendor Management\n• Cross-Functional Leadership & Negotiation'
+      v: '• Supply Chain & Freight Logistics\n• Advanced SAP ERP & Tally Prime\n• Financial Bookkeeping & Auditing\n• Advanced Microsoft Excel (VLOOKUP, Pivot, Macros)\n• Inventory Optimization & Vendor Management\n• Cross-Functional Leadership & Negotiation',
+      style: defaultStyle()
     },
     strengths: {
       t: 'Key Strengths',
       k: 'lines',
-      v: '• Analytical Mindset & Problem Solving\n• Excellent Verbal & Written Communication\n• Team Collaboration & Conflict Resolution\n• High Attention to Detail & Punctuality'
+      v: '• Analytical Mindset & Problem Solving\n• Excellent Verbal & Written Communication\n• Team Collaboration & Conflict Resolution\n• High Attention to Detail & Punctuality',
+      style: defaultStyle()
     },
     personal: {
       t: 'Personal Information',
@@ -994,14 +1050,16 @@ const getInitialResumeState = () => ({
         { l: 'Nationality', v: 'Indian' },
         { l: 'Marital Status', v: 'Single' },
         { l: 'Languages Known', v: 'Hindi, English' }
-      ]
+      ],
+      style: defaultStyle()
     },
     dec: {
       t: 'Declaration',
       k: 'dec',
       text: 'I hereby declare that all the information mentioned above is true, complete and correct to the best of my knowledge and belief.',
       place: 'Bihar Sharif',
-      date: '15/06/2026'
+      date: '15/06/2026',
+      style: defaultStyle()
     }
   }
 });
@@ -1023,7 +1081,6 @@ const getInitialBiodataState = () => ({
   fontSizeClass: 'fsize-medium',
   pageMarginClass: 'margin-standard',
   pageSpacingClass: 'space-normal',
-  boldHeadings: false,
   tpl: 101,
   secOrder: ['personal', 'address', 'contact', 'other', 'edu', 'family', 'dec'],
   sections: {
@@ -1041,7 +1098,8 @@ const getInitialBiodataState = () => ({
         { l: 'GENDER', v: 'Male' },
         { l: 'MARITAL STATUS', v: 'Unmarried' },
         { l: 'NATIONALITY', v: 'Indian' }
-      ]
+      ],
+      style: defaultStyle('#b45309')
     },
     address: {
       t: 'Address Details',
@@ -1049,7 +1107,8 @@ const getInitialBiodataState = () => ({
       items: [
         { l: 'CORRESPONDENCE ADDRESS', v: 'Biyawani, Bihar Sharif, Nalanda, Bihar - 803101' },
         { l: 'PERMANENT ADDRESS', v: 'AS ABOVE' }
-      ]
+      ],
+      style: defaultStyle()
     },
     contact: {
       t: 'Contact Information',
@@ -1057,7 +1116,8 @@ const getInitialBiodataState = () => ({
       items: [
         { l: 'CELL NO', v: '+91 9102952861' },
         { l: 'EMAIL ID', v: 'abhishek.vlog@gmail.com' }
-      ]
+      ],
+      style: defaultStyle()
     },
     other: {
       t: 'Special Attributes',
@@ -1065,7 +1125,8 @@ const getInitialBiodataState = () => ({
       items: [
         { l: 'PHYSICAL STATUS', v: 'Normal & Healthy' },
         { l: 'HOBBIES', v: 'Reading, Music, Traveling' }
-      ]
+      ],
+      style: defaultStyle()
     },
     edu: {
       t: 'Academic Background',
@@ -1074,7 +1135,8 @@ const getInitialBiodataState = () => ({
         { course: 'B.Sc. (Agriculture)', school: 'Bihar Agricultural University', year: '2018', marks: '78.50% (Distinction)' },
         { course: '12th (Science)', school: 'BSEB Patna', year: '2014', marks: '74.20%' },
         { course: '10th (Matric)', school: 'BSEB Patna', year: '2012', marks: '82.40%' }
-      ]
+      ],
+      style: defaultStyle()
     },
     family: {
       t: 'Family Details (Parivar Background)',
@@ -1085,33 +1147,57 @@ const getInitialBiodataState = () => ({
         { l: 'BROTHERS', v: '1 Younger Brother (Engineer)' },
         { l: 'SISTERS', v: '1 Elder Sister (Married)' },
         { l: 'NATIVE PLACE', v: 'Bihar Sharif, Nalanda' }
-      ]
+      ],
+      style: defaultStyle()
     },
     dec: {
       t: 'Declaration',
       k: 'dec',
       text: 'I hereby declare that all the above-mentioned details are authentic and true to the best of my knowledge.',
       place: 'Bihar Sharif',
-      date: '12/10/2026'
+      date: '12/10/2026',
+      style: defaultStyle()
     }
   }
 });
 
 let st = getInitialResumeState();
 
-const splitLines = str => String(str || '').split('\n').map(s => s.trim()).filter(Boolean);
-const renderList = str => {
-  const arr = splitLines(str);
-  return arr.length ? '<ul>' + arr.map(item => `<li>${escapeHtml(item)}</li>`).join('') + '</ul>' : '';
-};
+/* PARSE INLINE STYLES FOR EACH SECTION */
+function getSectionInlineStyle(styleObj) {
+  if (!styleObj) return '';
+  let css = '';
+  if (styleObj.font) css += `font-family: ${styleObj.font}; `;
+  if (styleObj.color) css += `color: ${styleObj.color}; `;
+  if (styleObj.size) css += `font-size: ${styleObj.size}; `;
+  if (styleObj.bold) css += `font-weight: 800; `;
+  if (styleObj.italic) css += `font-style: italic; `;
+  if (styleObj.underline) css += `text-decoration: underline; `;
+  return css;
+}
+
+function getHeadingInlineStyle(styleObj) {
+  if (!styleObj) return '';
+  let css = '';
+  if (styleObj.color) css += `color: ${styleObj.color}; border-color: ${styleObj.color}; `;
+  if (styleObj.font) css += `font-family: ${styleObj.font}; `;
+  if (styleObj.bold) css += `font-weight: 900; `;
+  return css;
+}
 
 /* RENDER INDIVIDUAL SECTION CONTENT */
 function renderSectionBody(secKey) {
   const s = st.sections[secKey];
   if (!s) return '';
 
-  if (s.k === 'text') return `<p>${escapeHtml(s.v).replace(/\n/g, '<br>')}</p>`;
-  if (s.k === 'lines') return renderList(s.v);
+  const secStyle = getSectionInlineStyle(s.style);
+
+  if (s.k === 'text') return `<div style="${secStyle}"><p>${parseRichText(s.v).replace(/\n/g, '<br>')}</p></div>`;
+  if (s.k === 'lines') {
+    const arr = splitLines(s.v);
+    const listHtml = arr.length ? '<ul>' + arr.map(item => `<li>${parseRichText(item)}</li>`).join('') + '</ul>' : '';
+    return `<div style="${secStyle}">${listHtml}</div>`;
+  }
   if (s.k === 'table') {
     const thYear = st.showYearCol ? `<th>Year</th>` : '';
     const thMarks = st.showMarksCol ? `<th>Marks / Grade</th>` : '';
@@ -1122,24 +1208,26 @@ function renderSectionBody(secKey) {
       return `<tr><td><strong>${escapeHtml(r.course || '')}</strong></td><td>${escapeHtml(r.school || '')}</td>${tdYear}${tdMarks}</tr>`;
     }).join('');
     return `
-      <table class="edu-table">
-        <thead><tr><th>Qualification / Degree</th><th>College / Board / School</th>${thYear}${thMarks}</tr></thead>
-        <tbody>${rows}</tbody>
-      </table>
+      <div style="${secStyle}">
+        <table class="edu-table">
+          <thead><tr><th>Qualification / Degree</th><th>College / Board / School</th>${thYear}${thMarks}</tr></thead>
+          <tbody>${rows}</tbody>
+        </table>
+      </div>
     `;
   }
   if (s.k === 'grid') {
     const rows = (s.items || []).map(item => {
       if (!item.l && !item.v) return '';
-      return `<div class="biodata-label">${escapeHtml(item.l)}</div><div class="biodata-colon">:</div><div class="biodata-val">${escapeHtml(item.v)}</div>`;
+      return `<div class="biodata-label">${escapeHtml(item.l)}</div><div class="biodata-colon">:</div><div class="biodata-val">${parseRichText(item.v)}</div>`;
     }).join('');
-    return `<div class="biodata-grid">${rows}</div>`;
+    return `<div style="${secStyle}"><div class="biodata-grid">${rows}</div></div>`;
   }
   if (s.k === 'dec') {
     const pName = st.sections.personal_head?.name || (st.sections.personal?.items?.find(x => x.l.toLowerCase().includes('name'))?.v) || '';
     return `
-      <div>
-        ${s.text ? `<p style="font-size:11px;margin-top:10px">${escapeHtml(s.text)}</p>` : ''}
+      <div style="${secStyle}">
+        ${s.text ? `<p style="font-size:11px;margin-top:10px">${parseRichText(s.text)}</p>` : ''}
         <div class="declaration-wrap">
           <div><p><strong>Place:</strong> ${escapeHtml(s.place || '')}</p><p><strong>Date:</strong> ${escapeHtml(s.date || '')}</p></div>
           <div style="text-align:right"><p style="margin-bottom:14px">Signature</p><p><strong>(${escapeHtml(pName)})</strong></p></div>
@@ -1150,9 +1238,7 @@ function renderSectionBody(secKey) {
   return '';
 }
 
-/* ==========================================================================
-   DYNAMIC MULTI-LAYOUT HTML GENERATOR
-   ========================================================================== */
+/* BUILD FULL DOCUMENT HTML */
 function buildFullDocumentHtml(tplId) {
   let topHeaderHtml = '';
   if (st.docTitle && st.docTitle.trim()) {
@@ -1192,14 +1278,16 @@ function buildFullDocumentHtml(tplId) {
     `;
   }
 
-  const head = st.sections.personal_head || { name: 'Full Name', role: '', phone: '', email: '', location: '' };
+  const head = st.sections.personal_head || { name: 'Full Name', role: '', phone: '', email: '', location: '', style: {} };
+  const headStyle = getSectionInlineStyle(head.style);
 
   // BIODATA RENDERING
   if (appMode === 'biodata') {
     const sectionsRendered = st.secOrder.map(k => {
       const s = st.sections[k];
       if (!s) return '';
-      return `<section><div class="sec-head-band">${escapeHtml(s.t)}</div>${renderSectionBody(k)}</section>`;
+      const hStyle = getHeadingInlineStyle(s.style);
+      return `<section><div class="sec-head-band" style="${hStyle}">${escapeHtml(s.t)}</div>${renderSectionBody(k)}</section>`;
     }).join('');
 
     return `
@@ -1215,7 +1303,6 @@ function buildFullDocumentHtml(tplId) {
     `;
   }
 
-  // RESUME RENDERING: 7 DISTINCT STRUCTURAL LAYOUT ENGINES
   const tplConfig = RESUME_TEMPLATES.find(t => t.id === tplId) || RESUME_TEMPLATES[0];
   const engine = tplConfig.engine || 'standard';
 
@@ -1232,11 +1319,11 @@ function buildFullDocumentHtml(tplId) {
           ${head.role ? `<p style="text-align:center;font-weight:700;font-size:12px;margin-bottom:14px">${escapeHtml(head.role)}</p>` : ''}
           <h2>Contact</h2>
           <p class="contact">📱 ${escapeHtml(head.phone)}<br>✉️ ${escapeHtml(head.email)}<br>📍 ${escapeHtml(head.location)}</p>
-          ${sideKeys.map(k => st.sections[k] ? `<h2>${escapeHtml(st.sections[k].t)}</h2>${renderSectionBody(k)}` : '').join('')}
+          ${sideKeys.map(k => st.sections[k] ? `<h2 style="${getHeadingInlineStyle(st.sections[k].style)}">${escapeHtml(st.sections[k].t)}</h2>${renderSectionBody(k)}` : '').join('')}
         </aside>
         <main class="main-pane">
           ${topHeaderHtml}
-          ${mainKeys.map(k => st.sections[k] ? `<section><h2>${escapeHtml(st.sections[k].t)}</h2>${renderSectionBody(k)}</section>` : '').join('')}
+          ${mainKeys.map(k => st.sections[k] ? `<section><h2 style="${getHeadingInlineStyle(st.sections[k].style)}">${escapeHtml(st.sections[k].t)}</h2>${renderSectionBody(k)}</section>` : '').join('')}
           ${bottomDongleHtml}
         </main>
       </div>
@@ -1252,156 +1339,19 @@ function buildFullDocumentHtml(tplId) {
       <div class="layout-sidebar-right">
         <main class="main-pane">
           ${topHeaderHtml}
-          <div style="border-bottom:2px solid #0f172a;padding-bottom:10px;margin-bottom:12px">
+          <div style="border-bottom:2px solid #0f172a;padding-bottom:10px;margin-bottom:12px;${headStyle}">
             <h1>${escapeHtml(head.name)}</h1>
             <div class="role-title">${escapeHtml(head.role)}</div>
           </div>
-          ${mainKeys.map(k => st.sections[k] ? `<section><h2>${escapeHtml(st.sections[k].t)}</h2>${renderSectionBody(k)}</section>` : '').join('')}
+          ${mainKeys.map(k => st.sections[k] ? `<section><h2 style="${getHeadingInlineStyle(st.sections[k].style)}">${escapeHtml(st.sections[k].t)}</h2>${renderSectionBody(k)}</section>` : '').join('')}
           ${bottomDongleHtml}
         </main>
         <aside class="sidebar-pane">
           ${photoHtml}
           <h2>Contact</h2>
           <p class="contact">📱 ${escapeHtml(head.phone)}<br>✉️ ${escapeHtml(head.email)}<br>📍 ${escapeHtml(head.location)}</p>
-          ${sideKeys.map(k => st.sections[k] ? `<h2>${escapeHtml(st.sections[k].t)}</h2>${renderSectionBody(k)}` : '').join('')}
+          ${sideKeys.map(k => st.sections[k] ? `<h2 style="${getHeadingInlineStyle(st.sections[k].style)}">${escapeHtml(st.sections[k].t)}</h2>${renderSectionBody(k)}` : '').join('')}
         </aside>
-      </div>
-    `;
-  }
-
-  // ENGINE 3: TWO-TONE 50/50 DUAL EQUAL COLUMNS
-  if (engine === 'split-50') {
-    const leftKeys = ['summary', 'exp'];
-    const rightKeys = st.secOrder.filter(k => !leftKeys.includes(k) && k !== 'personal_head' && k !== 'dec');
-
-    return `
-      <div class="layout-split-50">
-        ${topHeaderHtml}
-        <div class="head">
-          <div>
-            <h1>${escapeHtml(head.name)}</h1>
-            <div class="role-title">${escapeHtml(head.role)}</div>
-            <div class="contact">📱 ${escapeHtml(head.phone)} • ✉️ ${escapeHtml(head.email)} • 📍 ${escapeHtml(head.location)}</div>
-          </div>
-          ${photoHtml}
-        </div>
-        <div class="split-grid-50">
-          <div>
-            ${leftKeys.map(k => st.sections[k] ? `<section><h2>${escapeHtml(st.sections[k].t)}</h2>${renderSectionBody(k)}</section>` : '').join('')}
-          </div>
-          <div>
-            ${rightKeys.map(k => st.sections[k] ? `<section><h2>${escapeHtml(st.sections[k].t)}</h2>${renderSectionBody(k)}</section>` : '').join('')}
-          </div>
-        </div>
-        ${st.sections.dec ? `<section style="margin-top:20px">${renderSectionBody('dec')}</section>` : ''}
-        ${bottomDongleHtml}
-      </div>
-    `;
-  }
-
-  // ENGINE 4: FULL-BLEED TOP HERO BANNER
-  if (engine === 'hero-banner') {
-    const otherKeys = st.secOrder.filter(k => k !== 'personal_head');
-    return `
-      <div class="layout-hero-banner">
-        <div class="hero-header">
-          <div style="display:flex;justify-content:space-between;align-items:center">
-            <div>
-              <h1 style="color:#fff">${escapeHtml(head.name)}</h1>
-              <div style="font-size:13px;font-weight:700;color:#93c5fd;margin-top:2px">${escapeHtml(head.role)}</div>
-              <div style="font-size:11px;color:#e2e8f0;margin-top:6px">${escapeHtml(head.phone)} • ${escapeHtml(head.email)} • ${escapeHtml(head.location)}</div>
-            </div>
-            ${photoHtml}
-          </div>
-        </div>
-        <div class="hero-body">
-          ${otherKeys.map(k => st.sections[k] ? `<section><h2>${escapeHtml(st.sections[k].t)}</h2>${renderSectionBody(k)}</section>` : '').join('')}
-          ${bottomDongleHtml}
-        </div>
-      </div>
-    `;
-  }
-
-  // ENGINE 5: CONNECTED VERTICAL TIMELINE
-  if (engine === 'timeline') {
-    return `
-      <div class="layout-timeline">
-        ${topHeaderHtml}
-        <div class="head">
-          <div>
-            <h1>${escapeHtml(head.name)}</h1>
-            <div class="role-title">${escapeHtml(head.role)}</div>
-            <div class="contact">${escapeHtml(head.phone)} • ${escapeHtml(head.email)} • ${escapeHtml(head.location)}</div>
-          </div>
-          ${photoHtml}
-        </div>
-        ${st.secOrder.filter(k => k !== 'personal_head').map(k => {
-          const s = st.sections[k];
-          if (!s) return '';
-          return `
-            <section class="timeline-node">
-              <h2>${escapeHtml(s.t)}</h2>
-              ${renderSectionBody(k)}
-            </section>
-          `;
-        }).join('')}
-        ${bottomDongleHtml}
-      </div>
-    `;
-  }
-
-  // ENGINE 6: MODERN BENTO CARDS
-  if (engine === 'bento') {
-    return `
-      <div class="layout-bento-cards">
-        ${topHeaderHtml}
-        <div class="head" style="border:0;background:#f8fafc;padding:14px;border-radius:10px;border:1px solid #e2e8f0">
-          <div>
-            <h1>${escapeHtml(head.name)}</h1>
-            <div class="role-title">${escapeHtml(head.role)}</div>
-            <div class="contact">${escapeHtml(head.phone)} • ${escapeHtml(head.email)} • ${escapeHtml(head.location)}</div>
-          </div>
-          ${photoHtml}
-        </div>
-        ${st.secOrder.filter(k => k !== 'personal_head').map(k => {
-          const s = st.sections[k];
-          if (!s) return '';
-          return `
-            <section>
-              <h2>${escapeHtml(s.t)}</h2>
-              ${renderSectionBody(k)}
-            </section>
-          `;
-        }).join('')}
-        ${bottomDongleHtml}
-      </div>
-    `;
-  }
-
-  // ENGINE 7: SWISS BOLD HIGH-CONTRAST
-  if (engine === 'swiss') {
-    return `
-      <div class="layout-swiss">
-        ${topHeaderHtml}
-        <div style="border-bottom:3px solid #000;padding-bottom:12px;margin-bottom:14px;display:flex;justify-content:space-between;align-items:flex-end">
-          <div>
-            <h1>${escapeHtml(head.name)}</h1>
-            <div style="font-size:12px;font-weight:900;text-transform:uppercase">${escapeHtml(head.role)}</div>
-            <div style="font-size:11px;color:#475569;margin-top:4px">${escapeHtml(head.phone)} | ${escapeHtml(head.email)} | ${escapeHtml(head.location)}</div>
-          </div>
-          ${photoHtml}
-        </div>
-        ${st.secOrder.filter(k => k !== 'personal_head').map(k => {
-          const s = st.sections[k];
-          if (!s) return '';
-          return `
-            <section>
-              <h2>${escapeHtml(s.t)}</h2>
-              ${renderSectionBody(k)}
-            </section>
-          `;
-        }).join('')}
-        ${bottomDongleHtml}
       </div>
     `;
   }
@@ -1410,7 +1360,7 @@ function buildFullDocumentHtml(tplId) {
   return `
     <div>
       ${topHeaderHtml}
-      <div class="head">
+      <div class="head" style="${headStyle}">
         <div>
           <h1>${escapeHtml(head.name)}</h1>
           <div class="role-title">${escapeHtml(head.role)}</div>
@@ -1421,9 +1371,10 @@ function buildFullDocumentHtml(tplId) {
       ${st.secOrder.filter(k => k !== 'personal_head').map(k => {
         const s = st.sections[k];
         if (!s) return '';
+        const hStyle = getHeadingInlineStyle(s.style);
         return `
           <section>
-            <h2>${escapeHtml(s.t)}</h2>
+            <h2 style="${hStyle}">${escapeHtml(s.t)}</h2>
             ${renderSectionBody(k)}
           </section>
         `;
@@ -1447,7 +1398,7 @@ function renderCarousel() {
     const borderCls = (appMode === 'biodata' && t.cls) ? t.cls : '';
     return `
       <div class="card-preview-stage ${isActive ? 'active-slide' : ''}" data-carousel-id="${t.id}">
-        <div class="card-preview-canvas ${borderCls} ${st.marginClass || 'margin-standard'} ${st.spacingClass || 'space-normal'} ${st.fontSizeClass || 'fsize-medium'} ${st.boldHeadings ? 'bold-headings' : ''}" style="font-family:${st.fontFamily || 'inherit'}">
+        <div class="card-preview-canvas ${borderCls} ${st.marginClass || 'margin-standard'} ${st.spacingClass || 'space-normal'} ${st.fontSizeClass || 'fsize-medium'}" style="font-family:${st.fontFamily || 'inherit'}">
           ${buildFullDocumentHtml(t.id)}
         </div>
         <div class="use-tpl-overlay">
@@ -1468,14 +1419,14 @@ function drawMainCanvas() {
   const paper = $('paper');
   const borderCls = (appMode === 'biodata' && currentTpl.cls) ? currentTpl.cls : '';
   
-  paper.className = `main-a4-paper ${borderCls} ${st.marginClass || 'margin-standard'} ${st.spacingClass || 'space-normal'} ${st.fontSizeClass || 'fsize-medium'} ${st.boldHeadings ? 'bold-headings' : ''}`;
+  paper.className = `main-a4-paper ${borderCls} ${st.marginClass || 'margin-standard'} ${st.spacingClass || 'space-normal'} ${st.fontSizeClass || 'fsize-medium'}`;
   paper.style.fontFamily = st.fontFamily || 'inherit';
   paper.innerHTML = buildFullDocumentHtml(st.tpl);
   $('active-tpl-title').textContent = `${currentTpl.name} Active`;
   autoFitPaper();
 }
 
-/* SMART ZOOM & AUTOFIT */
+/* SMART ZOOM */
 function applyZoom() {
   const paper = $('paper');
   if (!paper) return;
@@ -1493,12 +1444,51 @@ function autoFitPaper() {
   applyZoom();
 }
 
-/* DRAGGABLE SECTION FORMS */
+/* RENDER DRAGGABLE SECTION FORMS WITH PER-SECTION FORMATTING TOOLBAR */
 function renderDynamicSectionForms() {
   const container = $('dynamic-sections-container');
   container.innerHTML = st.secOrder.map((key, idx) => {
     const s = st.sections[key];
     if (!s) return '';
+
+    const style = s.style || defaultStyle();
+
+    // TOOLBAR HTML FOR EVERY SECTION
+    const toolbarHtml = `
+      <div class="section-format-bar">
+        <div class="fmt-item">
+          <span>Font:</span>
+          <select data-fmt-prop="font" data-fmt-sec="${key}">
+            <option value="" ${style.font===''?'selected':''}>Theme Default</option>
+            <option value="'Segoe UI', Roboto, sans-serif" ${style.font.includes('Segoe')?'selected':''}>Segoe UI</option>
+            <option value="'Georgia', serif" ${style.font.includes('Georgia')?'selected':''}>Georgia</option>
+            <option value="Arial, sans-serif" ${style.font.includes('Arial')?'selected':''}>Arial</option>
+            <option value="'Palatino', serif" ${style.font.includes('Palatino')?'selected':''}>Palatino</option>
+            <option value="'Courier New', monospace" ${style.font.includes('Courier')?'selected':''}>Courier</option>
+            <option value="'Trebuchet MS', sans-serif" ${style.font.includes('Trebuchet')?'selected':''}>Trebuchet</option>
+          </select>
+        </div>
+        <div class="fmt-item">
+          <span>Size:</span>
+          <select data-fmt-prop="size" data-fmt-sec="${key}">
+            <option value="" ${style.size===''?'selected':''}>Default</option>
+            <option value="10px" ${style.size==='10px'?'selected':''}>Small (10px)</option>
+            <option value="11px" ${style.size==='11px'?'selected':''}>Normal (11px)</option>
+            <option value="12px" ${style.size==='12px'?'selected':''}>Medium (12px)</option>
+            <option value="13.5px" ${style.size==='13.5px'?'selected':''}>Large (13.5px)</option>
+          </select>
+        </div>
+        <div class="fmt-item">
+          <span>Color:</span>
+          <input type="color" data-fmt-prop="color" data-fmt-sec="${key}" value="${style.color || '#0f172a'}">
+        </div>
+        <div class="fmt-item" style="gap:2px">
+          <button class="fmt-btn ${style.bold?'active':''}" data-fmt-toggle="bold" data-fmt-sec="${key}" title="Bold">B</button>
+          <button class="fmt-btn ${style.italic?'active':''}" data-fmt-toggle="italic" data-fmt-sec="${key}" title="Italic" style="font-style:italic">I</button>
+          <button class="fmt-btn ${style.underline?'active':''}" data-fmt-toggle="underline" data-fmt-sec="${key}" title="Underline" style="text-decoration:underline">U</button>
+        </div>
+      </div>
+    `;
 
     let bodyFields = '';
     if (s.k === 'header') {
@@ -1510,9 +1500,19 @@ function renderDynamicSectionForms() {
         <div class="f-group f-full"><label>Location / Address</label><input data-head-f="location" value="${escapeHtml(s.location)}"></div>
       `;
     } else if (s.k === 'text') {
-      bodyFields = `<div class="f-group f-full"><label>Details</label><textarea data-sec-k="${key}" data-sec-f="v">${escapeHtml(s.v)}</textarea></div>`;
+      bodyFields = `
+        <div class="f-group f-full">
+          <label>Details (Supports **bold**, *italic*)</label>
+          <textarea data-sec-k="${key}" data-sec-f="v">${escapeHtml(s.v)}</textarea>
+        </div>
+      `;
     } else if (s.k === 'lines') {
-      bodyFields = `<div class="f-group f-full"><label>Items / Bullets (One per line)</label><textarea data-sec-k="${key}" data-sec-f="v" style="min-height:90px">${escapeHtml(s.v)}</textarea></div>`;
+      bodyFields = `
+        <div class="f-group f-full">
+          <label>Items / Bullets (One per line, supports **bold**)</label>
+          <textarea data-sec-k="${key}" data-sec-f="v" style="min-height:85px">${escapeHtml(s.v)}</textarea>
+        </div>
+      `;
     } else if (s.k === 'table') {
       bodyFields = `
         <div style="grid-column:1/-1;display:flex;flex-direction:column;gap:6px">
@@ -1560,6 +1560,7 @@ function renderDynamicSectionForms() {
             <button class="btn-danger" data-act="del" data-key="${key}" title="Delete Section" style="padding:3px 7px">🗑</button>
           </div>
         </div>
+        ${toolbarHtml}
         <div class="card-body">
           ${bodyFields}
         </div>
@@ -1618,7 +1619,6 @@ function renderForms() {
   $('select-font-size').value = st.fontSizeClass || "fsize-medium";
   $('select-page-margin').value = st.marginClass || "margin-standard";
   $('select-page-spacing').value = st.spacingClass || "space-normal";
-  $('check-bold-headings').checked = !!st.boldHeadings;
 
   renderDynamicSectionForms();
 }
@@ -1673,7 +1673,7 @@ function updateAll() {
 }
 
 function saveState() {
-  try { localStorage.setItem(`resumecraft_v12_${appMode}`, JSON.stringify(st)); } catch(e) {}
+  try { localStorage.setItem(`resumecraft_v13_${appMode}`, JSON.stringify(st)); } catch(e) {}
 }
 
 /* EVENT DELEGATION */
@@ -1701,6 +1701,14 @@ $('form-scroll').addEventListener('input', ev => {
     st.sections[el.dataset.decText].text = el.value;
   } else if (el.dataset.decF) {
     st.sections.dec[el.dataset.decF] = el.value;
+  } else if (el.dataset.fmtProp) {
+    // SECTION SPECIFIC FORMATTING PROPERTIES
+    const sec = el.dataset.fmtSec;
+    const prop = el.dataset.fmtProp;
+    if (st.sections[sec]) {
+      if (!st.sections[sec].style) st.sections[sec].style = defaultStyle();
+      st.sections[sec].style[prop] = el.value;
+    }
   }
   updateAll();
 });
@@ -1713,7 +1721,6 @@ $('select-font-family').onchange = e => { st.fontFamily = e.target.value; update
 $('select-font-size').onchange = e => { st.fontSizeClass = e.target.value; updateAll(); };
 $('select-page-margin').onchange = e => { st.marginClass = e.target.value; updateAll(); };
 $('select-page-spacing').onchange = e => { st.spacingClass = e.target.value; updateAll(); };
-$('check-bold-headings').onchange = e => { st.boldHeadings = e.target.checked; updateAll(); };
 
 $('check-col-year').onchange = e => { st.showYearCol = e.target.checked; renderDynamicSectionForms(); updateAll(); };
 $('check-col-marks').onchange = e => { st.showMarksCol = e.target.checked; renderDynamicSectionForms(); updateAll(); };
@@ -1724,9 +1731,23 @@ $('check-bottom-dongle').onchange = e => {
   updateAll();
 };
 
+/* SECTION BUTTON CLICKS (INCLUDING BOLD/ITALIC/UNDERLINE TOGGLES) */
 $('form-scroll').addEventListener('click', ev => {
   const btn = ev.target.closest('button');
   if (!btn) return;
+
+  // TOGGLE BOLD / ITALIC / UNDERLINE PER SECTION
+  if (btn.dataset.fmtToggle) {
+    const sec = btn.dataset.fmtSec;
+    const prop = btn.dataset.fmtToggle;
+    if (st.sections[sec]) {
+      if (!st.sections[sec].style) st.sections[sec].style = defaultStyle();
+      st.sections[sec].style[prop] = !st.sections[sec].style[prop];
+      btn.classList.toggle('active', st.sections[sec].style[prop]);
+      updateAll();
+    }
+    return;
+  }
 
   const act = btn.dataset.act;
   const key = btn.dataset.key;
@@ -1780,7 +1801,8 @@ $('btn-add-custom-sec').onclick = () => {
     items: [
       { l: 'Custom Field 1', v: 'Detail here' },
       { l: 'Custom Field 2', v: 'Detail here' }
-    ]
+    ],
+    style: defaultStyle()
   };
   st.secOrder.push(customKey);
   renderDynamicSectionForms();
@@ -1902,9 +1924,6 @@ $('slider-track').addEventListener('click', ev => {
   }
 });
 
-/* ==========================================================================
-   RELIABLE MOBILE NAVIGATION SWITCHER (FIXES "KABHI KAAM KARNA, KABHI NAHI")
-   ========================================================================== */
 function setMobileView(view) {
   document.body.className = `view-${view}`;
   
@@ -1982,7 +2001,7 @@ $('json-input').addEventListener('change', ev => {
 $('btn-rst').onclick = () => {
   if (confirm('Reset to default profile?')) {
     st = (appMode === 'resume') ? getInitialResumeState() : getInitialBiodataState();
-    try { localStorage.removeItem(`resumecraft_v12_${appMode}`); } catch(e) {}
+    try { localStorage.removeItem(`resumecraft_v13_${appMode}`); } catch(e) {}
     renderForms();
     updateAll();
   }
