@@ -1,0 +1,1798 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<title>ResumeCraft Pro — Distinct Trending Formats</title>
+<style>
+:root {
+  --primary: #2563eb;
+  --accent: #2563eb;
+  --ink: #0f172a;
+  --muted: #64748b;
+  --border: #cbd5e1;
+  --bg: #f8fafc;
+  --surface: #ffffff;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; background: #fdfdfd; color: var(--ink); font-size: 14px; padding-bottom: 50px; }
+
+/* HEADER */
+header {
+  background: #ffffff;
+  padding: 10px 14px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #e2e8f0;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  gap: 8px;
+}
+.brand { font-size: 17px; font-weight: 800; color: #0f172a; white-space: nowrap; }
+.brand span { color: #2563eb; }
+
+.mode-switch-bar {
+  display: inline-flex;
+  background: #f1f5f9;
+  padding: 3px;
+  border-radius: 8px;
+  border: 1px solid #cbd5e1;
+}
+.mode-btn {
+  padding: 6px 14px;
+  border-radius: 6px;
+  border: 0;
+  font-size: 12px;
+  font-weight: 800;
+  color: var(--muted);
+  background: transparent;
+  cursor: pointer;
+}
+.mode-btn.active {
+  background: #2563eb;
+  color: #fff;
+  box-shadow: 0 2px 5px rgba(37,99,235,0.3);
+}
+
+.header-actions { display: flex; gap: 5px; align-items: center; }
+button { font-family: inherit; font-size: 12px; font-weight: 700; padding: 7px 11px; border-radius: 6px; border: 0; cursor: pointer; transition: all 0.15s ease; display: inline-flex; align-items: center; justify-content: center; gap: 4px; white-space: nowrap; }
+button:active { transform: scale(0.96); }
+.btn-pri { background: #2563eb; color: #fff; box-shadow: 0 2px 4px rgba(37,99,235,0.25); }
+.btn-dark { background: #0f172a; color: #fff; }
+.btn-light { background: #fff; color: #0f172a; border: 1px solid #cbd5e1; }
+.btn-danger { background: #fee2e2; color: #b91c1c; }
+.btn-success { background: #ecfdf5; color: #059669; border: 1px solid #a7f3d0; }
+
+/* MOBILE NAVIGATION TABS */
+.mob-view-tabs {
+  display: none;
+  background: #ffffff;
+  padding: 8px 12px;
+  border-bottom: 1px solid #e2e8f0;
+  position: sticky;
+  top: 55px;
+  z-index: 90;
+  gap: 8px;
+}
+.mob-tab {
+  flex: 1;
+  padding: 8px 10px;
+  border-radius: 6px;
+  background: #f1f5f9;
+  color: var(--muted);
+  border: 1px solid #e2e8f0;
+  font-size: 12px;
+  font-weight: 700;
+}
+.mob-tab.active {
+  background: #2563eb;
+  color: #fff;
+  border-color: #2563eb;
+}
+
+/* CAROUSEL SLIDER */
+.carousel-section {
+  background: #f8fafc;
+  padding: 18px 10px 14px;
+  text-align: center;
+  border-bottom: 1px solid #e2e8f0;
+  position: relative;
+}
+.carousel-title { font-size: 19px; font-weight: 800; color: #0f172a; margin-bottom: 2px; }
+.carousel-subtitle { font-size: 11px; color: var(--muted); margin-bottom: 8px; }
+
+.category-filter-bar {
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+  flex-wrap: wrap;
+  margin-bottom: 10px;
+}
+.cat-pill {
+  padding: 4px 9px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 700;
+  background: #fff;
+  color: var(--muted);
+  border: 1px solid #cbd5e1;
+  cursor: pointer;
+}
+.cat-pill.active {
+  background: #0f172a;
+  color: #fff;
+  border-color: #0f172a;
+}
+
+.meta-wrapper { margin-bottom: 8px; min-height: 32px; }
+.meta-name { font-size: 15px; font-weight: 800; color: #0f172a; }
+.meta-desc { font-size: 11px; color: #64748b; }
+
+.slider-outer {
+  position: relative;
+  max-width: 960px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.slider-track {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  scroll-snap-type: x mandatory;
+  padding: 8px 6px 14px;
+  width: 100%;
+  -webkit-overflow-scrolling: touch;
+}
+.slider-track::-webkit-scrollbar { height: 5px; }
+.slider-track::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+
+.slider-arrow-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #2563eb;
+  color: #fff;
+  border: 0;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(37,99,235,0.35);
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 25;
+}
+.arrow-prev { left: -6px; }
+.arrow-next { right: -6px; }
+
+/* THUMBNAIL CAROUSEL CARD (FIXED PADDING & TRANSFORM) */
+.card-preview-stage {
+  width: 250px;
+  height: 354px;
+  background: #ffffff;
+  border-radius: 8px;
+  border: 1.5px solid #cbd5e1;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+  flex-shrink: 0;
+  position: relative;
+  overflow: hidden;
+  scroll-snap-align: center;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  opacity: 0.65;
+  transform: scale(0.92);
+}
+.card-preview-stage.active-slide {
+  opacity: 1;
+  transform: scale(1.02);
+  border: 2.5px solid #2563eb;
+  box-shadow: 0 10px 24px rgba(37,99,235,0.28);
+  z-index: 10;
+}
+.card-preview-canvas {
+  width: 794px !important;
+  min-height: 1123px !important;
+  height: 1123px !important;
+  transform: scale(0.3148) !important;
+  transform-origin: 0 0 !important;
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  pointer-events: none !important;
+  user-select: none !important;
+  background: #ffffff !important;
+  box-sizing: border-box !important;
+  color: #1e293b !important;
+  text-align: left !important;
+}
+
+.use-tpl-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(15, 23, 42, 0.4);
+  backdrop-filter: blur(1.5px);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 30;
+}
+.card-preview-stage.active-slide .use-tpl-overlay { display: flex; }
+.btn-use-template {
+  background: #2563eb;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 700;
+  padding: 10px 18px;
+  border-radius: 6px;
+  box-shadow: 0 4px 14px rgba(37,99,235,0.55);
+  border: 0;
+}
+
+/* MAIN BUILDER */
+main {
+  max-width: 1560px;
+  margin: 14px auto;
+  padding: 0 14px;
+  display: grid;
+  grid-template-columns: 490px minmax(0, 1fr);
+  gap: 20px;
+  align-items: start;
+}
+.panel {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+  overflow: hidden;
+}
+.panel-head {
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--border);
+  font-weight: 800;
+  font-size: 13.5px;
+  background: #fafafa;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+#form-scroll {
+  padding: 12px;
+  max-height: calc(100vh - 120px);
+  overflow-y: auto;
+}
+
+.persona-chips { display: flex; flex-wrap: wrap; gap: 5px; padding: 10px; background: #eff6ff; border-bottom: 1px solid #bfdbfe; }
+.persona-btn { background: #fff; color: #1e40af; border: 1.5px solid #bfdbfe; padding: 5px 9px; border-radius: 6px; font-size: 11px; }
+.persona-btn:hover { background: #2563eb; color: #fff; border-color: #2563eb; }
+
+/* DRAGGABLE CARDS */
+.card {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  margin-bottom: 12px;
+  background: #fff;
+  overflow: hidden;
+  transition: box-shadow 0.2s;
+}
+.card.dragging { opacity: 0.4; border: 2px dashed #2563eb; }
+.card-head {
+  padding: 9px 12px;
+  background: #f8fafc;
+  font-weight: 700;
+  font-size: 12.5px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--border);
+  gap: 6px;
+}
+.drag-handle { cursor: grab; color: #94a3b8; font-size: 16px; padding: 0 4px; user-select: none; }
+.card-head input.title-edit {
+  font-weight: 800;
+  font-size: 12.5px;
+  background: transparent;
+  border: 0;
+  outline: none;
+  color: #0f172a;
+  flex: 1;
+}
+.card-body { padding: 11px; display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.f-group { display: flex; flex-direction: column; gap: 3px; }
+.f-full { grid-column: 1 / -1; }
+label { font-size: 10px; font-weight: 700; text-transform: uppercase; color: var(--muted); letter-spacing: 0.5px; }
+input, select, textarea {
+  width: 100%;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  padding: 8px 10px;
+  font-size: 13px;
+  font-family: inherit;
+  color: var(--ink);
+  background: #fff;
+}
+input:focus, select:focus, textarea:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 2px rgba(37,99,235,0.15); }
+textarea { min-height: 56px; resize: vertical; line-height: 1.4; }
+
+.col-toggle-bar {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  background: #f1f5f9;
+  padding: 7px 10px;
+  border-radius: 6px;
+  border: 1px solid #e2e8f0;
+  margin-bottom: 4px;
+}
+.col-toggle-bar label {
+  text-transform: none;
+  font-size: 11.5px;
+  color: #0f172a;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  cursor: pointer;
+}
+
+/* ==========================================================================
+   A4 PRINT CANVAS & PROPER MARGINS (NO STICKING / SATNA BAND)
+   ========================================================================== */
+.preview-wrap {
+  background: #64748b;
+  padding: 20px 12px;
+  overflow: auto;
+  min-height: calc(100vh - 110px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.preview-toolbar {
+  width: 794px;
+  max-width: 100%;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #fff;
+  font-size: 12px;
+}
+.zoom-controls { display: flex; align-items: center; gap: 5px; background: rgba(0,0,0,0.35); padding: 4px 10px; border-radius: 20px; }
+
+.main-a4-paper {
+  width: 794px;
+  min-height: 1123px;
+  background: #ffffff;
+  color: #1e293b;
+  position: relative;
+  box-sizing: border-box;
+  transform-origin: top center;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+/* PADDING RULES (Generous breathing room so content never sticks to edges) */
+.paper-inner-pad { padding: 44px 48px; }
+
+/* TOP DOCUMENT BANNER */
+.doc-top-header { font-size: 22px; font-weight: 900; letter-spacing: 2.5px; text-transform: uppercase; margin-bottom: 16px; color: #0f172a; }
+.doc-top-header.with-underline { border-bottom: 2px solid #0f172a; padding-bottom: 4px; display: inline-block; }
+.header-center { text-align: center; }
+.header-left { text-align: left; }
+.header-right { text-align: right; }
+
+.auspicious-symbol { font-size: 15px; font-weight: 800; text-align: center; margin-bottom: 8px; }
+
+.photo-slot-box {
+  width: 95px;
+  height: 115px;
+  border: 1.5px dashed #64748b;
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 9.5px;
+  font-weight: 700;
+  color: #64748b;
+  padding: 4px;
+  background: #f8fafc;
+}
+.photo-slot-box img { width: 100%; height: 100%; object-fit: cover; border-radius: 3px; }
+
+/* RESUME BASE ELEMENTS */
+h1 { font-size: 24px; line-height: 1.15; font-weight: 800; color: #0f172a; margin-bottom: 3px; }
+.role-title { font-size: 13px; color: #2563eb; font-weight: 700; margin-bottom: 4px; }
+h2 {
+  font-size: 12px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  color: #2563eb;
+  border-bottom: 1.5px solid #2563eb;
+  padding-bottom: 3px;
+  margin: 14px 0 7px;
+}
+p { font-size: 11.5px; line-height: 1.5; color: #334155; margin: 3px 0; }
+.contact { font-size: 11px; color: #475569; line-height: 1.55; }
+.head { display: flex; align-items: flex-start; justify-content: space-between; border-bottom: 2px solid #2563eb; padding-bottom: 12px; margin-bottom: 10px; gap: 14px; }
+.photo { width: 85px; height: 100px; object-fit: cover; border: 1.5px solid #2563eb; border-radius: 4px; flex-shrink: 0; }
+ul { padding-left: 16px; margin: 3px 0; }
+li { font-size: 11px; line-height: 1.45; color: #334155; margin-bottom: 2px; }
+.skills { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 3px; }
+.skill { font-size: 10px; background: #f1f5f9; color: #1e293b; padding: 2px 7px; border-radius: 4px; border: 1px solid #e2e8f0; font-weight: 600; }
+
+.edu-table { width: 100%; border-collapse: collapse; font-size: 11px; margin: 6px 0 10px; }
+.edu-table th { background: #f1f5f9; color: #0f172a; text-align: left; padding: 5px 8px; border: 1px solid #cbd5e1; font-weight: 700; font-size: 10px; text-transform: uppercase; }
+.edu-table td { padding: 5px 8px; border: 1px solid #cbd5e1; color: #334155; font-size: 11px; }
+
+.declaration-wrap { margin-top: 24px; display: flex; justify-content: space-between; align-items: flex-end; font-size: 11px; }
+.tracking-dongle-block { margin-top: 24px; padding-top: 8px; border-top: 1px dashed #cbd5e1; font-size: 10px; color: #64748b; display: flex; justify-content: space-between; align-items: center; }
+
+/* ==========================================================================
+   ACTUAL DISTINCT STRUCTURAL LAYOUT ENGINES
+   ========================================================================== */
+
+/* 1. LEFT SOLID SIDEBAR (30/70 SPLIT) */
+.layout-sidebar-left { display: grid; grid-template-columns: 240px 1fr; min-height: 1123px; }
+.layout-sidebar-left .sidebar-pane { background: #0f766e; color: #fff; padding: 44px 22px; }
+.layout-sidebar-left .sidebar-pane * { color: #fff !important; border-color: rgba(255,255,255,0.3) !important; }
+.layout-sidebar-left .sidebar-pane .photo { border-radius: 50%; width: 90px; height: 90px; margin: 0 auto 12px; display: block; border-color: #fff; }
+.layout-sidebar-left .main-pane { padding: 44px 30px; }
+
+/* Dark Left Sidebar Variant */
+.theme-dark-navy .sidebar-pane { background: #0f172a !important; }
+
+/* 2. RIGHT SIDEBAR PRO (70/30 SPLIT) */
+.layout-sidebar-right { display: grid; grid-template-columns: 1fr 240px; min-height: 1123px; }
+.layout-sidebar-right .main-pane { padding: 44px 30px; }
+.layout-sidebar-right .sidebar-pane { background: #f8fafc; border-left: 2px solid #e2e8f0; padding: 44px 22px; }
+
+/* 3. TWO-TONE 50/50 DUAL COLUMN (CANVA STYLE) */
+.layout-split-50 { padding: 44px 48px; }
+.split-grid-50 { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 10px; }
+
+/* 4. FULL-BLEED TOP HERO BANNER */
+.layout-hero-banner .hero-header { background: #1e3a8a; color: #fff; padding: 36px 48px; margin-bottom: 20px; }
+.layout-hero-banner .hero-header * { color: #fff !important; }
+.layout-hero-banner .hero-body { padding: 0 48px 44px; }
+
+/* 5. CONNECTED TIMELINE ROADMAP */
+.layout-timeline { padding: 44px 48px; }
+.layout-timeline .timeline-node { position: relative; padding-left: 16px; border-left: 2.5px solid #2563eb; margin-left: 6px; margin-bottom: 12px; }
+.layout-timeline .timeline-node:before { content:''; position: absolute; left: -6px; top: 4px; width: 10px; height: 10px; border-radius: 50%; background: #2563eb; }
+
+/* 6. MODERN BENTO / BOXED CARDS */
+.layout-bento-cards { padding: 44px 48px; }
+.layout-bento-cards section { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 10px; padding: 14px 18px; margin-bottom: 14px; box-shadow: 0 1px 3px rgba(0,0,0,0.03); }
+.layout-bento-cards h2 { margin-top: 0; border-bottom: 1px solid #e2e8f0; }
+
+/* 7. SWISS BOLD HIGH-CONTRAST */
+.layout-swiss { padding: 44px 48px; }
+.layout-swiss h1 { font-size: 34px; font-weight: 900; letter-spacing: -1.5px; text-transform: uppercase; }
+.layout-swiss h2 { background: #000; color: #fff; padding: 3px 8px; border: 0; display: inline-block; font-size: 11px; }
+
+/* 8. INDIAN BIODATA COLON GRID (PIXEL-PERFECT ALIGNED) */
+.biodata-grid { display: grid; grid-template-columns: 210px 14px 1fr; row-gap: 5px; font-size: 11.5px; line-height: 1.45; margin-bottom: 12px; align-items: start; }
+.biodata-label { font-weight: 700; color: #1e293b; text-transform: uppercase; }
+.biodata-colon { font-weight: 800; text-align: center; }
+.biodata-val { color: #0f172a; word-break: break-word; }
+
+/* BIODATA BORDERS */
+.border-box-single { border: 1.5px solid #000 !important; }
+.border-gold-royal { border: 12px double #b45309 !important; background: #fffdfa !important; font-family: "Georgia", serif; }
+.border-gold-royal .auspicious-symbol { color: #b45309; }
+.border-islamic-green { border: 4px solid #0f766e !important; }
+
+/* PRINT RULES */
+@media print {
+  body { background: #fff !important; padding: 0 !important; }
+  header, .mob-view-tabs, .carousel-section, main > .panel:first-child, .preview-toolbar { display: none !important; }
+  main { display: block; margin: 0; padding: 0; }
+  .panel { border: 0; box-shadow: none; }
+  .preview-wrap { padding: 0; background: #fff; }
+  #paper { zoom: 1 !important; transform: none !important; width: 210mm !important; min-height: 297mm !important; margin: 0 !important; box-shadow: none !important; }
+  @page { size: A4; margin: 0; }
+}
+
+@media (max-width: 860px) {
+  header { padding: 8px 10px; }
+  .brand { font-size: 15px; }
+  .mob-view-tabs { display: flex; }
+  .carousel-section { padding: 14px 6px; }
+  .slider-arrow-btn { display: none; }
+  main { grid-template-columns: 1fr; padding: 6px; margin: 4px auto; }
+  #form-scroll { max-height: none; padding: 6px; }
+  body.view-edit .preview-panel { display: none; }
+  body.view-preview .edit-panel { display: none; }
+  body.view-preview .preview-panel { display: block; }
+}
+</style>
+</head>
+<body class="view-edit">
+
+<!-- HEADER -->
+<header>
+  <div class="brand">ResumeCraft <span>Pro</span></div>
+  
+  <div class="mode-switch-bar">
+    <button class="mode-btn active" id="btn-mode-resume">📄 Resume (40)</button>
+    <button class="mode-btn" id="btn-mode-biodata">💍 Biodata (25)</button>
+  </div>
+
+  <div class="header-actions">
+    <button class="btn-dark" id="btn-rst">Reset</button>
+    <button class="btn-light" id="btn-load">📂 Load</button>
+    <button class="btn-light" id="btn-save">💾 Save</button>
+    <button class="btn-pri" id="btn-pdf">⬇ PDF</button>
+  </div>
+  <input type="file" id="json-input" accept=".json" hidden>
+</header>
+
+<!-- MOBILE TABS -->
+<div class="mob-view-tabs">
+  <button class="mob-tab active" id="tab-edit-mode">✏️ 1. Edit Details</button>
+  <button class="mob-tab" id="tab-preview-mode">👁️ 2. Live A4 Sheet</button>
+</div>
+
+<!-- ==========================================================================
+     CAROUSEL SLIDER (WITH CATEGORIES)
+     ========================================================================== -->
+<section class="carousel-section">
+  <h1 class="carousel-title" id="carousel-main-title">40 Tested Resume Templates</h1>
+  <p class="carousel-subtitle" id="carousel-main-sub">Different Layout Types: Sidebars, 50/50 Splits, Timelines, Bento Cards & ATS</p>
+
+  <div class="category-filter-bar" id="category-filter-bar"></div>
+
+  <div class="meta-wrapper">
+    <div class="meta-name" id="meta-name">Professional Green Sidebar</div>
+    <div class="meta-desc" id="meta-desc">Split 30/70 Left Column • High Impact Recruiter Choice</div>
+  </div>
+
+  <div class="slider-outer">
+    <button class="slider-arrow-btn arrow-prev" id="slider-prev">‹</button>
+    <div class="slider-track" id="slider-track"></div>
+    <button class="slider-arrow-btn arrow-next" id="slider-next">›</button>
+  </div>
+</section>
+
+<!-- MAIN EDITOR & LIVE PREVIEW -->
+<main id="builder-anchor">
+  <!-- LEFT: FORM CONTROLS -->
+  <section class="panel edit-panel">
+    <div class="panel-head">
+      <span id="editor-title">✏️ Resume Details & Sections</span>
+      <button class="btn-success" id="btn-add-custom-sec">+ Add Custom Section</button>
+    </div>
+
+    <div class="persona-chips" id="persona-chips-bar"></div>
+
+    <div id="form-scroll">
+      <!-- 1. TOP DOCUMENT TITLE & UNDERLINE -->
+      <div class="card">
+        <div class="card-head">🔝 Top Header & Title Settings</div>
+        <div class="card-body">
+          <div class="f-group">
+            <label>Document Title</label>
+            <input id="input-doc-title" placeholder="RESUME / BIO-DATA / CURRICULUM VITAE">
+          </div>
+          <div class="f-group">
+            <label>Alignment</label>
+            <select id="select-doc-align">
+              <option value="center">Center</option>
+              <option value="left">Left</option>
+              <option value="right">Right</option>
+            </select>
+          </div>
+          <div class="f-group f-full" style="flex-direction:row;align-items:center;gap:8px;margin-top:2px">
+            <input type="checkbox" id="check-doc-underline" style="width:auto;cursor:pointer">
+            <label for="check-doc-underline" style="text-transform:none;font-size:12px;color:#0f172a;cursor:pointer">Add underline below top title</label>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2. AUSPICIOUS HEADER (FOR BIODATA) -->
+      <div class="card" id="card-auspicious" style="display:none">
+        <div class="card-head">🕉️ Auspicious Top Header Text</div>
+        <div class="card-body">
+          <div class="f-group f-full">
+            <input id="input-auspicious" placeholder="|| Shree Ganeshay Namah || / 786 / Bismillah / || Om ||">
+          </div>
+        </div>
+      </div>
+
+      <!-- 3. PHOTO OPTIONS -->
+      <div class="card">
+        <div class="card-head">📸 Photo Options</div>
+        <div class="card-body">
+          <div class="f-group">
+            <label>Photo Display Mode</label>
+            <select id="select-photo-mode">
+              <option value="real">Show Real Profile Photo</option>
+              <option value="slot">Show 'Affix Photo' Outline Box</option>
+              <option value="none">No Photo (Hide Box)</option>
+            </select>
+          </div>
+          <div class="f-group">
+            <label>Upload Photo</label>
+            <input type="file" id="photo-input" accept="image/*">
+          </div>
+        </div>
+      </div>
+
+      <!-- 4. ACADEMIC TABLE COLUMN TOGGLES -->
+      <div class="card">
+        <div class="card-head">🎓 Academic Table Column Controller</div>
+        <div class="card-body">
+          <div class="col-toggle-bar">
+            <span style="font-weight:700;margin-right:8px">Table Columns:</span>
+            <label><input type="checkbox" id="check-col-year" checked> Passing Year Column</label>
+            <label><input type="checkbox" id="check-col-marks" checked> Marks / % Column</label>
+          </div>
+          <span style="font-size:11px;color:var(--muted);grid-column:1/-1">Uncheck box to remove that entire column from the table.</span>
+        </div>
+      </div>
+
+      <!-- DYNAMIC SECTIONS CONTAINER (DRAG & DROP REORDERABLE) -->
+      <div id="dynamic-sections-container"></div>
+
+      <!-- 5. BOTTOM EXTRA TRACKING ID BLOCK -->
+      <div class="card">
+        <div class="card-head">
+          <span>📌 Bottom Tracking ID / Custom Notes Block</span>
+          <label style="cursor:pointer;display:inline-flex;align-items:center;gap:4px">
+            <input type="checkbox" id="check-bottom-dongle" style="width:auto"> Enable Block
+          </label>
+        </div>
+        <div class="card-body" id="dongle-settings-body" style="display:none">
+          <div class="f-group">
+            <label>Tracking ID / Reference No.</label>
+            <input id="input-dongle-track" placeholder="e.g. REF: APP-2026-X948">
+          </div>
+          <div class="f-group">
+            <label>Note / Watermark Text</label>
+            <input id="input-dongle-note" placeholder="e.g. Confidential • Submitted for official records">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RIGHT: REAL A4 PRINT CANVAS -->
+  <section class="panel preview-panel">
+    <div class="panel-head">
+      <span>📄 Active A4 Document</span>
+      <button class="btn-pri" id="btn-pdf-2" style="padding:4px 10px">⬇ Download PDF</button>
+    </div>
+    <div class="preview-wrap" id="preview-wrap">
+      <div class="preview-toolbar">
+        <span id="active-tpl-title">Active Document</span>
+        <div class="zoom-controls">
+          <span style="font-size:11px">Zoom:</span>
+          <button class="btn-dark" id="zoom-out" style="padding:2px 7px">-</button>
+          <span id="zoom-val" style="font-size:11px;min-width:32px;text-align:center">100%</span>
+          <button class="btn-dark" id="zoom-in" style="padding:2px 7px">+</button>
+          <button class="btn-dark" id="zoom-fit" style="padding:2px 7px">Fit</button>
+        </div>
+      </div>
+      <article id="paper" class="main-a4-paper"></article>
+    </div>
+  </section>
+</main>
+
+<script>
+const $ = id => document.getElementById(id);
+const escapeHtml = str => String(str == null ? '' : str).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+
+/* 40 RESUME TEMPLATES WITH DISTINCT STRUCTURAL LAYOUT ENGINES */
+const RESUME_TEMPLATES = [
+  { id: 1, name: "Professional Green Sidebar", cat: "sidebar", meta: "30/70 Left Column • High Recruiter Pick", engine: "sidebar-left", theme: "green" },
+  { id: 2, name: "Two-Tone 50/50 Dual Column", cat: "creative", meta: "Canva Trending • Equal Balanced Columns", engine: "split-50" },
+  { id: 3, name: "Connected Timeline Flow", cat: "creative", meta: "Connected Dots Career Roadmap", engine: "timeline" },
+  { id: 4, name: "Modern Bento Cards", cat: "creative", meta: "Boxed Section Modules with Soft Padding", engine: "bento" },
+  { id: 5, name: "Full-Bleed Top Banner", cat: "creative", meta: "Solid Dark Navy Header Strip", engine: "hero-banner" },
+  { id: 6, name: "Right Sidebar Pro", cat: "sidebar", meta: "70/30 Left Content, Right Highlights", engine: "sidebar-right" },
+  { id: 7, name: "Swiss High-Contrast Bold", cat: "ats", meta: "Stark Black & White Typography", engine: "swiss" },
+  { id: 8, name: "Wanda Collins Dark Sidebar", cat: "sidebar", meta: "Charcoal Left Column • High Impact", engine: "sidebar-left", theme: "dark" },
+  { id: 9, name: "Modern Fresher Table", cat: "fresher", meta: "Passport Photo Right • Academic Table", engine: "standard", theme: "fresher" },
+  { id: 10, name: "Traditional Georgia Serif", cat: "classic", meta: "Centered Editorial Classic", engine: "standard", theme: "serif-center" },
+  { id: 11, name: "Logan Hall Clean Slate", cat: "sidebar", meta: "Light Slate Sidebar • Operations", engine: "sidebar-left", theme: "slate" },
+  { id: 12, name: "Corporate MNC ATS", cat: "ats", meta: "100% Parser Compliant • TCS / Infosys", engine: "standard", theme: "clean-ats" },
+  { id: 13, name: "Teacher Academic CV", cat: "classic", meta: "B.Ed, CTET, Academic Pedagogy", engine: "standard", theme: "teacher" },
+  { id: 14, name: "Emerald Finance Specialist", cat: "classic", meta: "CA & Banking Green Borders", engine: "standard", theme: "emerald" },
+  { id: 15, name: "Developer Tech Pill", cat: "creative", meta: "Pill Badges for Tools & Frameworks", engine: "bento" },
+  { id: 16, name: "Executive Double Rule", cat: "classic", meta: "Double Navy Dividers & Small-Caps", engine: "standard", theme: "executive" },
+  { id: 17, name: "Nordic Minimalist Gray", cat: "ats", meta: "Soft Gray Clean Lines", engine: "standard", theme: "nordic" },
+  { id: 18, name: "Left Accent Colored Spine", cat: "ats", meta: "Thick Vertical Left Rail", engine: "standard", theme: "rail" },
+  { id: 19, name: "Monochrome Noir", cat: "ats", meta: "100% Pure Grayscale ATS Format", engine: "standard", theme: "noir" },
+  { id: 20, name: "Warm Terracotta Serif", cat: "classic", meta: "Earthy Warm Editorial Elegance", engine: "standard", theme: "terracotta" },
+  { id: 21, name: "Precision Blueprint Grid", cat: "creative", meta: "Grid Precision Layout for Engineers", engine: "bento" },
+  { id: 22, name: "Neo-Brutalist 3D Shadow", cat: "creative", meta: "Thick 3D Contrast Borders", engine: "bento" },
+  { id: 23, name: "Coral Creative Studio", cat: "creative", meta: "Design Portfolio Format", engine: "hero-banner" },
+  { id: 24, name: "Two-Tone Slate Left Sidebar", cat: "sidebar", meta: "Dark Slate Left Column Structure", engine: "sidebar-left", theme: "dark" },
+  { id: 25, name: "Compact ATS Strict", cat: "ats", meta: "Maximum Page Density", engine: "standard", theme: "clean-ats" },
+  { id: 26, name: "Gradient Ribbon Top", cat: "creative", meta: "Modern Startup Top Stripe", engine: "standard", theme: "gradient" },
+  { id: 27, name: "Presidential Double Frame", cat: "classic", meta: "Legal & Executive Double Border", engine: "standard", theme: "framed" },
+  { id: 28, name: "Charcoal Tech Lead", cat: "sidebar", meta: "Dark High Impact Tech Lead Format", engine: "sidebar-left", theme: "dark" },
+  { id: 29, name: "Two-Column Marketing", cat: "creative", meta: "Canva Style 50/50 Layout", engine: "split-50" },
+  { id: 30, name: "Roadmap Timeline Tech", cat: "creative", meta: "Startup Timeline with Career Nodes", engine: "timeline" },
+  { id: 31, name: "Modern Modular Bento", cat: "creative", meta: "Separate Card Containers for Sections", engine: "bento" },
+  { id: 32, name: "Corporate Blue Banner", cat: "creative", meta: "Full Bleed Header with Clean Body", engine: "hero-banner" },
+  { id: 33, name: "Executive Right Column", cat: "sidebar", meta: "Right Side Highlight Bar", engine: "sidebar-right" },
+  { id: 34, name: "Swiss Minimal Clean", cat: "ats", meta: "Monochrome Black Tag Badges", engine: "swiss" },
+  { id: 35, name: "Campus Placement Fresher", cat: "fresher", meta: "Marks Table & Photo Top-Right", engine: "standard", theme: "fresher" },
+  { id: 36, name: "Authoritative Serif CV", cat: "classic", meta: "Centred Georgia Executive", engine: "standard", theme: "serif-center" },
+  { id: 37, name: "Minimalist Slate Sidebar", cat: "sidebar", meta: "Clean Bordered Sidebar Column", engine: "sidebar-left", theme: "slate" },
+  { id: 38, name: "Pure Single Column ATS", cat: "ats", meta: "Zero Graphics Maximum Parsing", engine: "standard", theme: "clean-ats" },
+  { id: 39, name: "Academic CTET Qualified", cat: "classic", meta: "Teaching CV with Subject Experience", engine: "standard", theme: "teacher" },
+  { id: 40, name: "Banking & Accounts Lead", cat: "classic", meta: "GST & Audit Specialist Format", engine: "standard", theme: "emerald" }
+];
+
+/* 25 BIODATA TEMPLATES */
+const BIODATA_TEMPLATES = [
+  { id: 101, name: "Official Job Biodata", cat: "official", meta: "Bhushan Yoge Style • Single Black Box Border", cls: "border-box-single" },
+  { id: 102, name: "Marriage Bio-Data", cat: "marriage", meta: "Sangita Kaushik Style • Underlined • Aligned", cls: "" },
+  { id: 103, name: "Shaded Section Bands", cat: "official", meta: "InstaResume Style • Photo Slot Right", cls: "" },
+  { id: 104, name: "Royal Gold Marriage", cat: "marriage", meta: "Golden Double Border • Shree Ganeshay Namah", cls: "border-gold-royal" },
+  { id: 105, name: "Islamic Bismillah 786", cat: "religious", meta: "Emerald Green Frame • Muslim Matrimonial", cls: "border-islamic-green" },
+  { id: 106, name: "Double Frame Classic", cat: "official", meta: "Govt & Verification Standard Border", cls: "border-box-single" },
+  { id: 107, name: "Educational Marks Table", cat: "official", meta: "Scribd Style • 10th to Degree Focused", cls: "border-box-single" },
+  { id: 108, name: "Rose Gold Bride Profile", cat: "marriage", meta: "Elegant Pink/Burgundy Matrimonial", cls: "" },
+  { id: 109, name: "Traditional Om Blessing", cat: "religious", meta: "Auspicious Hindu Marriage Layout", cls: "border-gold-royal" },
+  { id: 110, name: "Modern Minimal Bio", cat: "modern", meta: "Clean Borderless Executive Profile", cls: "" },
+  { id: 111, name: "Navy Blue Job Band", cat: "official", meta: "Solid Navy Section Banners", cls: "border-box-single" },
+  { id: 112, name: "Extended Family Parivar", cat: "family", meta: "Chacha, Mama, Dada Details Highlighted", cls: "border-gold-royal" },
+  { id: 113, name: "Kundali & Horoscope Bio", cat: "marriage", meta: "Gotra, Rashi, Nakshatra, Manglik", cls: "border-gold-royal" },
+  { id: 114, name: "Sikh Ik Onkar Biodata", cat: "religious", meta: "Golden Saffron Matrimonial Frame", cls: "border-gold-royal" },
+  { id: 115, name: "Christian Cross Matrimonial", cat: "religious", meta: "Holy Cross Header • Classic Border", cls: "border-box-single" },
+  { id: 116, name: "Two-Column Groom Executive", cat: "marriage", meta: "Career & Family Side-by-Side", cls: "" },
+  { id: 117, name: "Green Traditional Temple", cat: "marriage", meta: "Auspicious Vedic Green Framing", cls: "border-islamic-green" },
+  { id: 118, name: "Vintage Serif Formal", cat: "official", meta: "Palatino Formal Verification Style", cls: "border-box-single" },
+  { id: 119, name: "Maroon Royal Heritage", cat: "marriage", meta: "Rajput & Traditional Parivar Look", cls: "border-gold-royal" },
+  { id: 120, name: "Govt PSU Verification", cat: "official", meta: "Standard Public Sector Verified Form", cls: "border-box-single" },
+  { id: 121, name: "Compact 1-Page Aligned", cat: "official", meta: "Ultra-Clean High Density Layout", cls: "border-box-single" },
+  { id: 122, name: "Violet Floral Elegance", cat: "marriage", meta: "Soft Purple Matrimonial Border", cls: "" },
+  { id: 123, name: "South Indian Gothram Bio", cat: "marriage", meta: "Star, Rasi, Dosham, Sub-Caste", cls: "border-gold-royal" },
+  { id: 124, name: "Marwari Parivar Traditional", cat: "family", meta: "Grandparents, Business & Native Place", cls: "border-gold-royal" },
+  { id: 125, name: "Kshatriya Heritage Royal", cat: "marriage", meta: "Bold Red & Gold Matrimonial Bio", cls: "border-gold-royal" }
+];
+
+let appMode = 'resume';
+let currentCatFilter = 'all';
+let currentZoom = 1;
+
+/* RICH INITIAL RESUME STATE */
+const getInitialResumeState = () => ({
+  docTitle: 'RESUME',
+  docUnderline: true,
+  docAlign: 'center',
+  auspicious: '',
+  photoMode: 'real',
+  photo: '',
+  showYearCol: true,
+  showMarksCol: true,
+  enableDongle: true,
+  dongleTrack: 'REF: APP-2026-X948',
+  dongleNote: 'Confidential • Submitted for official records',
+  tpl: 1,
+  secOrder: ['personal_head', 'summary', 'exp', 'edu', 'skills', 'strengths', 'personal', 'dec'],
+  sections: {
+    personal_head: {
+      t: 'Contact Information',
+      k: 'header',
+      name: 'Tiffany Giroux',
+      role: 'Senior Freight & Logistics Analyst',
+      email: 'tiffany.giroux@gmail.com',
+      phone: '+1 (453) 370-8367 / +91 98765 43210',
+      location: '10 Harmony Drive, Orlando, Florida 32707'
+    },
+    summary: {
+      t: 'Professional Summary',
+      k: 'text',
+      v: 'A highly skilled and organized Logistics, Distribution and Supply Chain professional with 6+ years of excellence in corporate bookkeeping, inventory auditing, and freight management. Proven track record of optimizing supply chain workflows by 35% and delivering accurate financial reconciliations across cross-functional operations.'
+    },
+    exp: {
+      t: 'Work Experience',
+      k: 'lines',
+      v: '• Senior Freight Audit & Logistics Analyst — Ford Motor Co. (July 2021 - Present)\n  - Supervised freight billing audit cycles for 50+ regional carrier accounts, cutting invoice discrepancy costs by $120,000 annually.\n  - Automated quarterly supply chain reconciliation in SAP ERP, saving 15 hours of manual reporting every month.\n• Logistics Operations Specialist — Honda Logistics (May 2018 - June 2021)\n  - Managed end-to-end inbound dispatch and warehouse inventory tracking with a 99.4% on-time delivery metric.\n  - Led a team of 4 junior warehouse dispatchers and coordinated vendor compliance contracts.'
+    },
+    edu: {
+      t: 'Academic Qualification',
+      k: 'table',
+      rows: [
+        { course: 'Postgraduate Diploma in Management Studies', school: 'University of Hertfordshire, Watford', year: '2020', marks: 'Distinction' },
+        { course: 'Bachelor of Commerce (B.Com - Supply Chain)', school: 'Florida State University', year: '2018', marks: '3.8 CGPA / First Class' },
+        { course: 'Senior Secondary School (Commerce & Maths)', school: 'St. Xavier Senior High School', year: '2015', marks: '88.50%' }
+      ]
+    },
+    skills: {
+      t: 'Core Technical & Professional Skills',
+      k: 'lines',
+      v: '• Supply Chain & Freight Logistics\n• Advanced SAP ERP & Tally Prime\n• Financial Bookkeeping & Auditing\n• Advanced Microsoft Excel (VLOOKUP, Pivot, Macros)\n• Inventory Optimization & Vendor Management\n• Cross-Functional Leadership & Negotiation'
+    },
+    strengths: {
+      t: 'Key Strengths',
+      k: 'lines',
+      v: '• Analytical Mindset & Problem Solving\n• Excellent Verbal & Written Communication\n• Team Collaboration & Conflict Resolution\n• High Attention to Detail & Punctuality'
+    },
+    personal: {
+      t: 'Personal Information',
+      k: 'grid',
+      items: [
+        { l: "Father's Name", v: 'Marcus Giroux' },
+        { l: 'Date of Birth', v: '14 August 1996' },
+        { l: 'Gender', v: 'Female' },
+        { l: 'Nationality', v: 'American / Indian PIO' },
+        { l: 'Marital Status', v: 'Single' },
+        { l: 'Languages Known', v: 'English (Fluent), Spanish, Hindi' }
+      ]
+    },
+    dec: {
+      t: 'Declaration',
+      k: 'dec',
+      text: 'I hereby declare that all the information mentioned above is true, complete and correct to the best of my knowledge and belief.',
+      place: 'Orlando, FL',
+      date: '15/06/2026'
+    }
+  }
+});
+
+/* RICH INITIAL BIODATA STATE */
+const getInitialBiodataState = () => ({
+  docTitle: 'BIODATA',
+  docUnderline: false,
+  docAlign: 'center',
+  auspicious: '|| Shree Ganeshay Namah ||',
+  photoMode: 'slot',
+  photo: '',
+  showYearCol: true,
+  showMarksCol: true,
+  enableDongle: true,
+  dongleTrack: 'VERIFY-ID: MH-2026-YOGE',
+  dongleNote: 'Official Certified Biodata for Records',
+  tpl: 101,
+  secOrder: ['personal', 'address', 'contact', 'other', 'edu', 'family', 'dec'],
+  sections: {
+    personal: {
+      t: 'Personal Information',
+      k: 'grid',
+      items: [
+        { l: 'NAME', v: 'Bhushan Dasharath Yoge' },
+        { l: 'EDUCATION QUALIFICATION', v: 'B.Sc. (Agriculture) - First Class' },
+        { l: 'DATE OF BIRTH', v: '14/10/1994 (Time: 06:45 AM)' },
+        { l: 'PLACE OF BIRTH', v: 'Beed, Maharashtra' },
+        { l: 'HEIGHT & COMPLEXION', v: "5' 9\", Fair" },
+        { l: 'GOTRA / CASTE', v: 'Kaushik / Maratha 96 Kuli' },
+        { l: 'LANGUAGES KNOWN', v: 'Marathi / Hindi / English / Telugu' },
+        { l: 'GENDER', v: 'Male' },
+        { l: 'MARITAL STATUS', v: 'Unmarried' },
+        { l: 'NATIONALITY', v: 'Indian' }
+      ]
+    },
+    address: {
+      t: 'Address Details',
+      k: 'grid',
+      items: [
+        { l: 'CORRESPONDENCE ADDRESS', v: 'Adithyavihar Apartment, Flat No:10, Tendulkar Colony, Pangari Road, Adarshnagar, Beed-431122, Maharashtra' },
+        { l: 'PERMANENT ADDRESS', v: 'Plot No. 45, Shivaji Chowk, Near Ganesh Temple, Beed-431122, Maharashtra' }
+      ]
+    },
+    contact: {
+      t: 'Contact Information',
+      k: 'grid',
+      items: [
+        { l: 'CELL NO', v: '+91 9403139782 / 9420112705' },
+        { l: 'LANDLINE NO', v: '02442-220798' },
+        { l: 'EMAIL ID', v: 'bhushanyoge.yoge7@gmail.com' }
+      ]
+    },
+    other: {
+      t: 'Special Attributes',
+      k: 'grid',
+      items: [
+        { l: 'PHYSICAL STATUS', v: 'Normal & Healthy (Non-Handicap)' },
+        { l: 'HOBBIES', v: 'Reading Agricultural Journals, Classical Music, Cricket' }
+      ]
+    },
+    edu: {
+      t: 'Academic Background',
+      k: 'table',
+      rows: [
+        { course: 'B.Sc. (Agriculture)', school: 'Vasantrao Naik Agricultural University', year: '2016', marks: '78.50% (Distinction)' },
+        { course: 'H.S.C. (12th Science)', school: 'State Board Maharashtra', year: '2012', marks: '74.20%' },
+        { course: 'S.S.C. (10th Board)', school: 'State Board Maharashtra', year: '2010', marks: '82.40%' }
+      ]
+    },
+    family: {
+      t: 'Family Details (Parivar Background)',
+      k: 'grid',
+      items: [
+        { l: "FATHER'S NAME & OCC.", v: 'Mr. Dasharath Yoge (Retired Class-1 Gazetted Officer)' },
+        { l: "MOTHER'S NAME & OCC.", v: 'Mrs. Parvati Yoge (Homemaker)' },
+        { l: 'BROTHERS', v: '1 Younger Brother (Software Engineer at Infosys, Pune)' },
+        { l: 'SISTERS', v: '1 Elder Sister (M.Sc., Married, settled in Mumbai)' },
+        { l: 'CHACHA (UNCLE)', v: 'Advocate Ramesh Yoge (District Court, Aurangabad)' },
+        { l: 'MAMA (MATERNAL UNCLE)', v: 'Mr. Suresh Patil (Businessman, Pune)' },
+        { l: 'NATIVE PLACE', v: 'Beed, Maharashtra (Own 10 Acre Irrigated Land & Bunglow)' }
+      ]
+    },
+    dec: {
+      t: 'Declaration',
+      k: 'dec',
+      text: 'I hereby declare that all the above-mentioned details are authentic and true to the best of my knowledge.',
+      place: 'Beed',
+      date: '12/10/2026'
+    }
+  }
+});
+
+let st = getInitialResumeState();
+
+const splitLines = str => String(str || '').split('\n').map(s => s.trim()).filter(Boolean);
+const renderList = str => {
+  const arr = splitLines(str);
+  return arr.length ? '<ul>' + arr.map(item => `<li>${escapeHtml(item)}</li>`).join('') + '</ul>' : '';
+};
+
+/* RENDER INDIVIDUAL SECTION CONTENT */
+function renderSectionBody(secKey) {
+  const s = st.sections[secKey];
+  if (!s) return '';
+
+  if (s.k === 'text') return `<p>${escapeHtml(s.v).replace(/\n/g, '<br>')}</p>`;
+  if (s.k === 'lines') return renderList(s.v);
+  if (s.k === 'table') {
+    const thYear = st.showYearCol ? `<th>Year</th>` : '';
+    const thMarks = st.showMarksCol ? `<th>Marks / Grade</th>` : '';
+    const rows = (s.rows || []).map(r => {
+      if (!r.course && !r.school && !r.year && !r.marks) return '';
+      const tdYear = st.showYearCol ? `<td>${escapeHtml(r.year || '')}</td>` : '';
+      const tdMarks = st.showMarksCol ? `<td>${escapeHtml(r.marks || '')}</td>` : '';
+      return `<tr><td><strong>${escapeHtml(r.course || '')}</strong></td><td>${escapeHtml(r.school || '')}</td>${tdYear}${tdMarks}</tr>`;
+    }).join('');
+    return `
+      <table class="edu-table">
+        <thead><tr><th>Qualification / Degree</th><th>College / Board / School</th>${thYear}${thMarks}</tr></thead>
+        <tbody>${rows}</tbody>
+      </table>
+    `;
+  }
+  if (s.k === 'grid') {
+    const rows = (s.items || []).map(item => {
+      if (!item.l && !item.v) return '';
+      return `<div class="biodata-label">${escapeHtml(item.l)}</div><div class="biodata-colon">:</div><div class="biodata-val">${escapeHtml(item.v)}</div>`;
+    }).join('');
+    return `<div class="biodata-grid">${rows}</div>`;
+  }
+  if (s.k === 'dec') {
+    const pName = st.sections.personal_head?.name || (st.sections.personal?.items?.find(x => x.l.toLowerCase().includes('name'))?.v) || '';
+    return `
+      <div>
+        ${s.text ? `<p style="font-size:11px;margin-top:10px">${escapeHtml(s.text)}</p>` : ''}
+        <div class="declaration-wrap">
+          <div><p><strong>Place:</strong> ${escapeHtml(s.place || '')}</p><p><strong>Date:</strong> ${escapeHtml(s.date || '')}</p></div>
+          <div style="text-align:right"><p style="margin-bottom:14px">Signature</p><p><strong>(${escapeHtml(pName)})</strong></p></div>
+        </div>
+      </div>
+    `;
+  }
+  return '';
+}
+
+/* ==========================================================================
+   DYNAMIC MULTI-LAYOUT HTML GENERATOR (Genuinely Different Formats)
+   ========================================================================== */
+function buildFullDocumentHtml(tplId) {
+  let topHeaderHtml = '';
+  if (st.docTitle && st.docTitle.trim()) {
+    topHeaderHtml = `
+      <div class="header-${st.docAlign}">
+        <div class="doc-top-header ${st.docUnderline ? 'with-underline' : ''}">
+          ${escapeHtml(st.docTitle)}
+        </div>
+      </div>
+    `;
+  }
+
+  const auspiciousHtml = (appMode === 'biodata' && st.auspicious && st.auspicious.trim()) 
+    ? `<div class="auspicious-symbol">${escapeHtml(st.auspicious)}</div>` 
+    : '';
+
+  let photoHtml = '';
+  if (st.photoMode === 'real') {
+    photoHtml = st.photo 
+      ? `<img class="photo" src="${st.photo}" alt="Photo">` 
+      : `<div class="photo-slot-box"><img src="" style="display:none"><span>PROFILE<br>PHOTO</span></div>`;
+  } else if (st.photoMode === 'slot') {
+    photoHtml = `
+      <div class="photo-slot-box">
+        ${st.photo ? `<img src="${st.photo}">` : `<span>AFFIX<br>PASSPORT SIZE<br>PHOTO</span>`}
+      </div>
+    `;
+  }
+
+  let bottomDongleHtml = '';
+  if (st.enableDongle) {
+    bottomDongleHtml = `
+      <div class="tracking-dongle-block">
+        <span>${escapeHtml(st.dongleTrack || '')}</span>
+        <span>${escapeHtml(st.dongleNote || '')}</span>
+      </div>
+    `;
+  }
+
+  const head = st.sections.personal_head || { name: 'Full Name', role: '', phone: '', email: '', location: '' };
+
+  // -------------------------------------------------------------
+  // BIODATA RENDERING (Strictly Indian Outer-Bordered / Colon Grid)
+  // -------------------------------------------------------------
+  if (appMode === 'biodata') {
+    const sectionsRendered = st.secOrder.map(k => {
+      const s = st.sections[k];
+      if (!s) return '';
+      return `<section><div class="sec-head-band">${escapeHtml(s.t)}</div>${renderSectionBody(k)}</section>`;
+    }).join('');
+
+    return `
+      <div class="paper-inner-pad">
+        ${auspiciousHtml}
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:12px">
+          <div style="flex:1">${topHeaderHtml}</div>
+          ${photoHtml}
+        </div>
+        ${sectionsRendered}
+        ${bottomDongleHtml}
+      </div>
+    `;
+  }
+
+  // -------------------------------------------------------------
+  // RESUME RENDERING: 6 DISTINCT STRUCTURAL ENGINES
+  // -------------------------------------------------------------
+  const tplConfig = RESUME_TEMPLATES.find(t => t.id === tplId) || RESUME_TEMPLATES[0];
+  const engine = tplConfig.engine || 'standard';
+
+  // ENGINE 1: LEFT SOLID SIDEBAR (30/70 SPLIT)
+  if (engine === 'sidebar-left') {
+    const sideKeys = ['skills', 'personal', 'strengths'];
+    const mainKeys = st.secOrder.filter(k => !sideKeys.includes(k) && k !== 'personal_head');
+
+    return `
+      <div class="layout-sidebar-left ${tplConfig.theme ? 'theme-' + tplConfig.theme : ''}">
+        <aside class="sidebar-pane">
+          ${photoHtml}
+          <h1 style="font-size:20px;text-align:center">${escapeHtml(head.name)}</h1>
+          ${head.role ? `<p style="text-align:center;font-weight:700;font-size:12px;margin-bottom:14px">${escapeHtml(head.role)}</p>` : ''}
+          <h2>Contact</h2>
+          <p class="contact">📱 ${escapeHtml(head.phone)}<br>✉️ ${escapeHtml(head.email)}<br>📍 ${escapeHtml(head.location)}</p>
+          ${sideKeys.map(k => st.sections[k] ? `<h2>${escapeHtml(st.sections[k].t)}</h2>${renderSectionBody(k)}` : '').join('')}
+        </aside>
+        <main class="main-pane">
+          ${topHeaderHtml}
+          ${mainKeys.map(k => st.sections[k] ? `<section><h2>${escapeHtml(st.sections[k].t)}</h2>${renderSectionBody(k)}</section>` : '').join('')}
+          ${bottomDongleHtml}
+        </main>
+      </div>
+    `;
+  }
+
+  // ENGINE 2: RIGHT SIDEBAR PRO (70/30 SPLIT)
+  if (engine === 'sidebar-right') {
+    const sideKeys = ['skills', 'strengths', 'personal'];
+    const mainKeys = st.secOrder.filter(k => !sideKeys.includes(k) && k !== 'personal_head');
+
+    return `
+      <div class="layout-sidebar-right">
+        <main class="main-pane">
+          ${topHeaderHtml}
+          <div style="border-bottom:2px solid #0f172a;padding-bottom:10px;margin-bottom:12px">
+            <h1>${escapeHtml(head.name)}</h1>
+            <div class="role-title">${escapeHtml(head.role)}</div>
+          </div>
+          ${mainKeys.map(k => st.sections[k] ? `<section><h2>${escapeHtml(st.sections[k].t)}</h2>${renderSectionBody(k)}</section>` : '').join('')}
+          ${bottomDongleHtml}
+        </main>
+        <aside class="sidebar-pane">
+          ${photoHtml}
+          <h2>Contact</h2>
+          <p class="contact">📱 ${escapeHtml(head.phone)}<br>✉️ ${escapeHtml(head.email)}<br>📍 ${escapeHtml(head.location)}</p>
+          ${sideKeys.map(k => st.sections[k] ? `<h2>${escapeHtml(st.sections[k].t)}</h2>${renderSectionBody(k)}` : '').join('')}
+        </aside>
+      </div>
+    `;
+  }
+
+  // ENGINE 3: TWO-TONE 50/50 DUAL EQUAL COLUMNS (CANVA STYLE)
+  if (engine === 'split-50') {
+    const leftKeys = ['summary', 'exp'];
+    const rightKeys = st.secOrder.filter(k => !leftKeys.includes(k) && k !== 'personal_head' && k !== 'dec');
+
+    return `
+      <div class="layout-split-50">
+        ${topHeaderHtml}
+        <div class="head">
+          <div>
+            <h1>${escapeHtml(head.name)}</h1>
+            <div class="role-title">${escapeHtml(head.role)}</div>
+            <div class="contact">📱 ${escapeHtml(head.phone)} • ✉️ ${escapeHtml(head.email)} • 📍 ${escapeHtml(head.location)}</div>
+          </div>
+          ${photoHtml}
+        </div>
+        <div class="split-grid-50">
+          <div>
+            ${leftKeys.map(k => st.sections[k] ? `<section><h2>${escapeHtml(st.sections[k].t)}</h2>${renderSectionBody(k)}</section>` : '').join('')}
+          </div>
+          <div>
+            ${rightKeys.map(k => st.sections[k] ? `<section><h2>${escapeHtml(st.sections[k].t)}</h2>${renderSectionBody(k)}</section>` : '').join('')}
+          </div>
+        </div>
+        ${st.sections.dec ? `<section style="margin-top:20px">${renderSectionBody('dec')}</section>` : ''}
+        ${bottomDongleHtml}
+      </div>
+    `;
+  }
+
+  // ENGINE 4: FULL-BLEED TOP HERO BANNER
+  if (engine === 'hero-banner') {
+    const otherKeys = st.secOrder.filter(k => k !== 'personal_head');
+    return `
+      <div class="layout-hero-banner">
+        <div class="hero-header">
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <div>
+              <h1 style="color:#fff">${escapeHtml(head.name)}</h1>
+              <div style="font-size:13px;font-weight:700;color:#93c5fd;margin-top:2px">${escapeHtml(head.role)}</div>
+              <div style="font-size:11px;color:#e2e8f0;margin-top:6px">${escapeHtml(head.phone)} • ${escapeHtml(head.email)} • ${escapeHtml(head.location)}</div>
+            </div>
+            ${photoHtml}
+          </div>
+        </div>
+        <div class="hero-body">
+          ${otherKeys.map(k => st.sections[k] ? `<section><h2>${escapeHtml(st.sections[k].t)}</h2>${renderSectionBody(k)}</section>` : '').join('')}
+          ${bottomDongleHtml}
+        </div>
+      </div>
+    `;
+  }
+
+  // ENGINE 5: CONNECTED VERTICAL TIMELINE
+  if (engine === 'timeline') {
+    return `
+      <div class="layout-timeline">
+        ${topHeaderHtml}
+        <div class="head">
+          <div>
+            <h1>${escapeHtml(head.name)}</h1>
+            <div class="role-title">${escapeHtml(head.role)}</div>
+            <div class="contact">${escapeHtml(head.phone)} • ${escapeHtml(head.email)} • ${escapeHtml(head.location)}</div>
+          </div>
+          ${photoHtml}
+        </div>
+        ${st.secOrder.filter(k => k !== 'personal_head').map(k => {
+          const s = st.sections[k];
+          if (!s) return '';
+          return `
+            <section class="timeline-node">
+              <h2>${escapeHtml(s.t)}</h2>
+              ${renderSectionBody(k)}
+            </section>
+          `;
+        }).join('')}
+        ${bottomDongleHtml}
+      </div>
+    `;
+  }
+
+  // ENGINE 6: MODERN BENTO CARDS
+  if (engine === 'bento') {
+    return `
+      <div class="layout-bento-cards">
+        ${topHeaderHtml}
+        <div class="head" style="border:0;background:#f8fafc;padding:14px;border-radius:10px;border:1px solid #e2e8f0">
+          <div>
+            <h1>${escapeHtml(head.name)}</h1>
+            <div class="role-title">${escapeHtml(head.role)}</div>
+            <div class="contact">${escapeHtml(head.phone)} • ${escapeHtml(head.email)} • ${escapeHtml(head.location)}</div>
+          </div>
+          ${photoHtml}
+        </div>
+        ${st.secOrder.filter(k => k !== 'personal_head').map(k => {
+          const s = st.sections[k];
+          if (!s) return '';
+          return `
+            <section>
+              <h2>${escapeHtml(s.t)}</h2>
+              ${renderSectionBody(k)}
+            </section>
+          `;
+        }).join('')}
+        ${bottomDongleHtml}
+      </div>
+    `;
+  }
+
+  // ENGINE 7: SWISS BOLD HIGH-CONTRAST
+  if (engine === 'swiss') {
+    return `
+      <div class="layout-swiss">
+        ${topHeaderHtml}
+        <div style="border-bottom:3px solid #000;padding-bottom:12px;margin-bottom:14px;display:flex;justify-content:space-between;align-items:flex-end">
+          <div>
+            <h1>${escapeHtml(head.name)}</h1>
+            <div style="font-size:12px;font-weight:900;text-transform:uppercase">${escapeHtml(head.role)}</div>
+            <div style="font-size:11px;color:#475569;margin-top:4px">${escapeHtml(head.phone)} | ${escapeHtml(head.email)} | ${escapeHtml(head.location)}</div>
+          </div>
+          ${photoHtml}
+        </div>
+        ${st.secOrder.filter(k => k !== 'personal_head').map(k => {
+          const s = st.sections[k];
+          if (!s) return '';
+          return `
+            <section>
+              <h2>${escapeHtml(s.t)}</h2>
+              ${renderSectionBody(k)}
+            </section>
+          `;
+        }).join('')}
+        ${bottomDongleHtml}
+      </div>
+    `;
+  }
+
+  // DEFAULT STANDARD SINGLE-COLUMN (With Proper Margins so it NEVER Sticks)
+  return `
+    <div class="paper-inner-pad">
+      ${topHeaderHtml}
+      <div class="head">
+        <div>
+          <h1>${escapeHtml(head.name)}</h1>
+          <div class="role-title">${escapeHtml(head.role)}</div>
+          <div class="contact">${escapeHtml(head.phone)} • ${escapeHtml(head.email)}<br>${escapeHtml(head.location)}</div>
+        </div>
+        ${photoHtml}
+      </div>
+      ${st.secOrder.filter(k => k !== 'personal_head').map(k => {
+        const s = st.sections[k];
+        if (!s) return '';
+        return `
+          <section>
+            <h2>${escapeHtml(s.t)}</h2>
+            ${renderSectionBody(k)}
+          </section>
+        `;
+      }).join('')}
+      ${bottomDongleHtml}
+    </div>
+  `;
+}
+
+function getFilteredTemplatesList() {
+  const fullList = (appMode === 'resume') ? RESUME_TEMPLATES : BIODATA_TEMPLATES;
+  if (currentCatFilter === 'all') return fullList;
+  return fullList.filter(t => t.cat === currentCatFilter);
+}
+
+function renderCarousel() {
+  const list = getFilteredTemplatesList();
+  const track = $('slider-track');
+  track.innerHTML = list.map(t => {
+    const isActive = (t.id === st.tpl);
+    const borderCls = (appMode === 'biodata' && t.cls) ? t.cls : '';
+    return `
+      <div class="card-preview-stage ${isActive ? 'active-slide' : ''}" data-carousel-id="${t.id}">
+        <div class="card-preview-canvas ${borderCls}">
+          ${buildFullDocumentHtml(t.id)}
+        </div>
+        <div class="use-tpl-overlay">
+          <button class="btn-use-template" data-action-pick="${t.id}">Use this template</button>
+        </div>
+      </div>
+    `;
+  }).join('');
+
+  const currentTpl = (appMode === 'resume' ? RESUME_TEMPLATES : BIODATA_TEMPLATES).find(x => x.id === st.tpl) || list[0] || RESUME_TEMPLATES[0];
+  $('meta-name').textContent = currentTpl.name;
+  $('meta-desc').textContent = currentTpl.meta;
+}
+
+function drawMainCanvas() {
+  const fullList = (appMode === 'resume' ? RESUME_TEMPLATES : BIODATA_TEMPLATES);
+  const currentTpl = fullList.find(x => x.id === st.tpl) || fullList[0];
+  const paper = $('paper');
+  const borderCls = (appMode === 'biodata' && currentTpl.cls) ? currentTpl.cls : '';
+  paper.className = `main-a4-paper ${borderCls}`;
+  paper.innerHTML = buildFullDocumentHtml(st.tpl);
+  $('active-tpl-title').textContent = `${currentTpl.name} Active`;
+  applyZoom();
+}
+
+function applyZoom() {
+  const paper = $('paper');
+  paper.style.transform = `scale(${currentZoom})`;
+  paper.style.marginBottom = `${(1123 * currentZoom) - 1123}px`;
+  $('zoom-val').textContent = `${Math.round(currentZoom * 100)}%`;
+}
+function autoFitPaper() {
+  const containerWidth = $('preview-wrap').clientWidth - 30;
+  currentZoom = Math.min(1, Math.max(0.35, containerWidth / 794));
+  applyZoom();
+}
+
+/* DRAGGABLE SECTION FORMS */
+function renderDynamicSectionForms() {
+  const container = $('dynamic-sections-container');
+  container.innerHTML = st.secOrder.map((key, idx) => {
+    const s = st.sections[key];
+    if (!s) return '';
+
+    let bodyFields = '';
+    if (s.k === 'header') {
+      bodyFields = `
+        <div class="f-group f-full"><label>Full Name</label><input data-head-f="name" value="${escapeHtml(s.name)}"></div>
+        <div class="f-group"><label>Role / Title</label><input data-head-f="role" value="${escapeHtml(s.role)}"></div>
+        <div class="f-group"><label>Email Address</label><input data-head-f="email" value="${escapeHtml(s.email)}"></div>
+        <div class="f-group"><label>Phone Number</label><input data-head-f="phone" value="${escapeHtml(s.phone)}"></div>
+        <div class="f-group f-full"><label>Location / Address</label><input data-head-f="location" value="${escapeHtml(s.location)}"></div>
+      `;
+    } else if (s.k === 'text') {
+      bodyFields = `<div class="f-group f-full"><label>Details</label><textarea data-sec-k="${key}" data-sec-f="v">${escapeHtml(s.v)}</textarea></div>`;
+    } else if (s.k === 'lines') {
+      bodyFields = `<div class="f-group f-full"><label>Items / Bullets (One per line)</label><textarea data-sec-k="${key}" data-sec-f="v" style="min-height:90px">${escapeHtml(s.v)}</textarea></div>`;
+    } else if (s.k === 'table') {
+      bodyFields = `
+        <div style="grid-column:1/-1;display:flex;flex-direction:column;gap:6px">
+          ${(s.rows || []).map((r, rIdx) => `
+            <div style="border:1px dashed #cbd5e1;padding:6px;border-radius:6px;display:grid;grid-template-columns:1fr 1fr;gap:4px;background:#fbfcfe;position:relative">
+              <input data-tbl-k="${key}" data-r-idx="${rIdx}" data-r-f="course" value="${escapeHtml(r.course)}" placeholder="Qualification / Degree">
+              <input data-tbl-k="${key}" data-r-idx="${rIdx}" data-r-f="school" value="${escapeHtml(r.school)}" placeholder="Board / University">
+              ${st.showYearCol ? `<input data-tbl-k="${key}" data-r-idx="${rIdx}" data-r-f="year" value="${escapeHtml(r.year)}" placeholder="Year">` : ''}
+              ${st.showMarksCol ? `<input data-tbl-k="${key}" data-r-idx="${rIdx}" data-r-f="marks" value="${escapeHtml(r.marks)}" placeholder="Marks / Grade">` : ''}
+              <button class="btn-danger" data-del-tbl-row="${key}" data-r-idx="${rIdx}" style="grid-column:1/-1;padding:3px;font-size:10px">🗑 Delete This Row</button>
+            </div>
+          `).join('')}
+          <button class="btn-light" data-add-tbl-row="${key}" style="padding:4px;margin-top:4px">+ Add Table Row</button>
+        </div>
+      `;
+    } else if (s.k === 'grid') {
+      bodyFields = `
+        <div style="grid-column:1/-1;display:flex;flex-direction:column;gap:5px">
+          ${(s.items || []).map((item, iIdx) => `
+            <div style="display:grid;grid-template-columns:1fr 1.6fr auto;gap:5px;align-items:center">
+              <input data-grid-k="${key}" data-g-idx="${iIdx}" data-g-f="l" value="${escapeHtml(item.l)}" placeholder="Label">
+              <input data-grid-k="${key}" data-g-idx="${iIdx}" data-g-f="v" value="${escapeHtml(item.v)}" placeholder="Value">
+              <button class="btn-danger" data-del-grid-item="${key}" data-g-idx="${iIdx}" style="padding:4px 7px">✕</button>
+            </div>
+          `).join('')}
+          <button class="btn-light" data-add-grid-item="${key}" style="padding:4px;margin-top:4px">+ Add Field</button>
+        </div>
+      `;
+    } else if (s.k === 'dec') {
+      bodyFields = `
+        <div class="f-group f-full"><label>Declaration Text</label><textarea data-dec-text="${key}">${escapeHtml(s.text || '')}</textarea></div>
+        <div class="f-group"><label>Place</label><input data-dec-f="place" value="${escapeHtml(s.place || '')}"></div>
+        <div class="f-group"><label>Date</label><input data-dec-f="date" value="${escapeHtml(s.date || '')}"></div>
+      `;
+    }
+
+    return `
+      <div class="card" draggable="true" data-drag-key="${key}">
+        <div class="card-head">
+          <span class="drag-handle" title="Drag to reorder">⠿</span>
+          <input class="title-edit" data-rename-key="${key}" value="${escapeHtml(s.t)}">
+          <div style="display:flex;gap:3px">
+            <button class="btn-light" data-act="moveup" data-key="${key}" title="Move Up" style="padding:3px 7px">⬆</button>
+            <button class="btn-light" data-act="movedn" data-key="${key}" title="Move Down" style="padding:3px 7px">⬇</button>
+            <button class="btn-danger" data-act="del" data-key="${key}" title="Delete Section" style="padding:3px 7px">🗑</button>
+          </div>
+        </div>
+        <div class="card-body">
+          ${bodyFields}
+        </div>
+      </div>
+    `;
+  }).join('');
+
+  attachDragAndDropHandlers();
+}
+
+let draggedCardKey = null;
+function attachDragAndDropHandlers() {
+  const cards = document.querySelectorAll('.card[data-drag-key]');
+  cards.forEach(card => {
+    card.addEventListener('dragstart', e => {
+      draggedCardKey = card.dataset.dragKey;
+      card.classList.add('dragging');
+      e.dataTransfer.setData('text/plain', draggedCardKey);
+    });
+    card.addEventListener('dragend', () => {
+      card.classList.remove('dragging');
+      draggedCardKey = null;
+    });
+    card.addEventListener('dragover', e => e.preventDefault());
+    card.addEventListener('drop', e => {
+      e.preventDefault();
+      const targetKey = card.dataset.dragKey;
+      if (draggedCardKey && targetKey && draggedCardKey !== targetKey) {
+        const fromIdx = st.secOrder.indexOf(draggedCardKey);
+        const toIdx = st.secOrder.indexOf(targetKey);
+        if (fromIdx !== -1 && toIdx !== -1) {
+          st.secOrder.splice(fromIdx, 1);
+          st.secOrder.splice(toIdx, 0, draggedCardKey);
+          renderDynamicSectionForms();
+          updateAll();
+        }
+      }
+    });
+  });
+}
+
+function renderForms() {
+  $('input-doc-title').value = st.docTitle || '';
+  $('check-doc-underline').checked = !!st.docUnderline;
+  $('select-doc-align').value = st.docAlign || 'center';
+  $('input-auspicious').value = st.auspicious || '';
+  $('select-photo-mode').value = st.photoMode || 'real';
+  $('check-col-year').checked = !!st.showYearCol;
+  $('check-col-marks').checked = !!st.showMarksCol;
+  $('check-bottom-dongle').checked = !!st.enableDongle;
+  $('dongle-settings-body').style.display = st.enableDongle ? 'grid' : 'none';
+  $('input-dongle-track').value = st.dongleTrack || '';
+  $('input-dongle-note').value = st.dongleNote || '';
+  renderDynamicSectionForms();
+}
+
+function renderCategoryFilters() {
+  const bar = $('category-filter-bar');
+  if (appMode === 'resume') {
+    bar.innerHTML = `
+      <div class="cat-pill ${currentCatFilter==='all'?'active':''}" data-cat="all">All (40)</div>
+      <div class="cat-pill ${currentCatFilter==='sidebar'?'active':''}" data-cat="sidebar">Sidebars (30/70)</div>
+      <div class="cat-pill ${currentCatFilter==='creative'?'active':''}" data-cat="creative">Canva 50/50 & Timeline</div>
+      <div class="cat-pill ${currentCatFilter==='ats'?'active':''}" data-cat="ats">100% ATS Clean</div>
+      <div class="cat-pill ${currentCatFilter==='fresher'?'active':''}" data-cat="fresher">Freshers & Marks Table</div>
+      <div class="cat-pill ${currentCatFilter==='classic'?'active':''}" data-cat="classic">Classic & Executive</div>
+    `;
+  } else {
+    bar.innerHTML = `
+      <div class="cat-pill ${currentCatFilter==='all'?'active':''}" data-cat="all">All (25)</div>
+      <div class="cat-pill ${currentCatFilter==='official'?'active':''}" data-cat="official">Official & Job (Bordered)</div>
+      <div class="cat-pill ${currentCatFilter==='marriage'?'active':''}" data-cat="marriage">Marriage & Parivar</div>
+      <div class="cat-pill ${currentCatFilter==='religious'?'active':''}" data-cat="religious">Religious (Om/Ganesha/786)</div>
+      <div class="cat-pill ${currentCatFilter==='family'?'active':''}" data-cat="family">Extended Family (Mama/Chacha)</div>
+      <div class="cat-pill ${currentCatFilter==='modern'?'active':''}" data-cat="modern">Modern Minimal</div>
+    `;
+  }
+}
+
+function renderPersonaChips() {
+  const bar = $('persona-chips-bar');
+  if (appMode === 'resume') {
+    bar.innerHTML = `
+      <span style="font-size:11px;font-weight:700;color:#1e40af;width:100%">⚡ 1-Click Complete Profiles:</span>
+      <button class="persona-btn" data-res-preset="pro_green">🌿 Green Sidebar (Layout 1)</button>
+      <button class="persona-btn" data-res-preset="split_canva">📑 Canva 50/50 (Layout 2)</button>
+      <button class="persona-btn" data-res-preset="timeline_flow">⏱️ Timeline Roadmap (Layout 3)</button>
+      <button class="persona-btn" data-res-preset="fresher_ramya">🎓 College Fresher (Table + Photo)</button>
+    `;
+  } else {
+    bar.innerHTML = `
+      <span style="font-size:11px;font-weight:700;color:#1e40af;width:100%">⚡ 1-Click Samples From Pinterest Screenshot:</span>
+      <button class="persona-btn" data-bio-preset="yoge_official">📜 Bhushan Yoge (Official Job Biodata)</button>
+      <button class="persona-btn" data-bio-preset="sangita_marriage">💍 Sangita Kaushik (Marriage Biodata)</button>
+      <button class="persona-btn" data-bio-preset="instaresume_shaded">📑 InstaResume Shaded (Photo Right)</button>
+    `;
+  }
+}
+
+function updateAll() {
+  drawMainCanvas();
+  renderCarousel();
+  saveState();
+}
+
+function saveState() {
+  try { localStorage.setItem(`resumecraft_v8_${appMode}`, JSON.stringify(st)); } catch(e) {}
+}
+
+/* EVENT DELEGATION */
+$('form-scroll').addEventListener('input', ev => {
+  const el = ev.target;
+  if (el.id === 'input-doc-title') {
+    st.docTitle = el.value;
+  } else if (el.id === 'input-auspicious') {
+    st.auspicious = el.value;
+  } else if (el.id === 'input-dongle-track') {
+    st.dongleTrack = el.value;
+  } else if (el.id === 'input-dongle-note') {
+    st.dongleNote = el.value;
+  } else if (el.dataset.headF) {
+    st.sections.personal_head[el.dataset.headF] = el.value;
+  } else if (el.dataset.renameKey) {
+    st.sections[el.dataset.renameKey].t = el.value;
+  } else if (el.dataset.secK) {
+    st.sections[el.dataset.secK][el.dataset.secF] = el.value;
+  } else if (el.dataset.tblK) {
+    st.sections[el.dataset.tblK].rows[parseInt(el.dataset.rIdx, 10)][el.dataset.rF] = el.value;
+  } else if (el.dataset.gridK) {
+    st.sections[el.dataset.gridK].items[parseInt(el.dataset.gIdx, 10)][el.dataset.gF] = el.value;
+  } else if (el.dataset.decText) {
+    st.sections[el.dataset.decText].text = el.value;
+  } else if (el.dataset.decF) {
+    st.sections.dec[el.dataset.decF] = el.value;
+  }
+  updateAll();
+});
+
+$('select-doc-align').onchange = e => { st.docAlign = e.target.value; updateAll(); };
+$('check-doc-underline').onchange = e => { st.docUnderline = e.target.checked; updateAll(); };
+$('select-photo-mode').onchange = e => { st.photoMode = e.target.value; updateAll(); };
+
+$('check-col-year').onchange = e => { st.showYearCol = e.target.checked; renderDynamicSectionForms(); updateAll(); };
+$('check-col-marks').onchange = e => { st.showMarksCol = e.target.checked; renderDynamicSectionForms(); updateAll(); };
+
+$('check-bottom-dongle').onchange = e => {
+  st.enableDongle = e.target.checked;
+  $('dongle-settings-body').style.display = st.enableDongle ? 'grid' : 'none';
+  updateAll();
+};
+
+$('form-scroll').addEventListener('click', ev => {
+  const btn = ev.target.closest('button');
+  if (!btn) return;
+
+  const act = btn.dataset.act;
+  const key = btn.dataset.key;
+
+  if (act === 'moveup') {
+    const idx = st.secOrder.indexOf(key);
+    if (idx > 0) {
+      [st.secOrder[idx - 1], st.secOrder[idx]] = [st.secOrder[idx], st.secOrder[idx - 1]];
+      renderDynamicSectionForms();
+      updateAll();
+    }
+  } else if (act === 'movedn') {
+    const idx = st.secOrder.indexOf(key);
+    if (idx < st.secOrder.length - 1) {
+      [st.secOrder[idx], st.secOrder[idx + 1]] = [st.secOrder[idx + 1], st.secOrder[idx]];
+      renderDynamicSectionForms();
+      updateAll();
+    }
+  } else if (act === 'del') {
+    st.secOrder = st.secOrder.filter(k => k !== key);
+    delete st.sections[key];
+    renderDynamicSectionForms();
+    updateAll();
+  } else if (btn.dataset.addTblRow) {
+    st.sections[btn.dataset.addTblRow].rows.push({ course: '', school: '', year: '', marks: '' });
+    renderDynamicSectionForms();
+    updateAll();
+  } else if (btn.dataset.delTblRow) {
+    st.sections[btn.dataset.delTblRow].rows.splice(parseInt(btn.dataset.rIdx, 10), 1);
+    renderDynamicSectionForms();
+    updateAll();
+  } else if (btn.dataset.addGridItem) {
+    st.sections[btn.dataset.addGridItem].items.push({ l: 'NEW LABEL', v: '' });
+    renderDynamicSectionForms();
+    updateAll();
+  } else if (btn.dataset.delGridItem) {
+    st.sections[btn.dataset.delGridItem].items.splice(parseInt(btn.dataset.gIdx, 10), 1);
+    renderDynamicSectionForms();
+    updateAll();
+  }
+});
+
+$('btn-add-custom-sec').onclick = () => {
+  const title = prompt('Enter Custom Section Title (e.g. Certifications, Projects, Mama Details, Kundali):', 'New Section');
+  if (!title) return;
+  const customKey = 'sec_' + Date.now();
+  st.sections[customKey] = {
+    t: title,
+    k: (appMode === 'biodata' ? 'grid' : 'lines'),
+    v: '• First key detail\n• Second key detail',
+    items: [
+      { l: 'Custom Field 1', v: 'Detail here' },
+      { l: 'Custom Field 2', v: 'Detail here' }
+    ]
+  };
+  st.secOrder.push(customKey);
+  renderDynamicSectionForms();
+  updateAll();
+};
+
+$('category-filter-bar').addEventListener('click', ev => {
+  const pill = ev.target.closest('.cat-pill');
+  if (!pill) return;
+  currentCatFilter = pill.dataset.cat;
+  renderCategoryFilters();
+  renderCarousel();
+  centerActiveCard();
+});
+
+$('persona-chips-bar').addEventListener('click', ev => {
+  const btn = ev.target.closest('.persona-btn');
+  if (!btn) return;
+  if (btn.dataset.bioPreset === 'yoge_official') {
+    st = getInitialBiodataState();
+  } else if (btn.dataset.bioPreset === 'sangita_marriage') {
+    st = getInitialBiodataState();
+    st.docTitle = 'BIO-DATA';
+    st.docUnderline = true;
+    st.tpl = 102;
+    st.sections.personal.items[0].v = 'Sangita Kaushik';
+    st.sections.personal.items[1].v = 'M.A. (English), B.Ed';
+  } else if (btn.dataset.bioPreset === 'instaresume_shaded') {
+    st = getInitialBiodataState();
+    st.tpl = 103;
+    st.photoMode = 'slot';
+  } else if (btn.dataset.resPreset === 'pro_green') {
+    st = getInitialResumeState();
+    st.tpl = 1; // Green Sidebar
+  } else if (btn.dataset.resPreset === 'split_canva') {
+    st = getInitialResumeState();
+    st.tpl = 2; // Canva 50/50
+  } else if (btn.dataset.resPreset === 'timeline_flow') {
+    st = getInitialResumeState();
+    st.tpl = 3; // Timeline
+  } else if (btn.dataset.resPreset === 'fresher_ramya') {
+    st = getInitialResumeState();
+    st.tpl = 9; // Fresher Table
+    st.sections.personal_head.name = 'RAMYA UPPALAPATI';
+    st.sections.personal_head.role = 'Fresher / B.Com Graduate';
+  }
+
+  renderForms();
+  updateAll();
+  centerActiveCard();
+});
+
+$('btn-mode-resume').onclick = () => switchMode('resume');
+$('btn-mode-biodata').onclick = () => switchMode('biodata');
+
+function switchMode(newMode) {
+  if (appMode === newMode) return;
+  appMode = newMode;
+  currentCatFilter = 'all';
+  $('btn-mode-resume').classList.toggle('active', appMode === 'resume');
+  $('btn-mode-biodata').classList.toggle('active', appMode === 'biodata');
+
+  if (appMode === 'resume') {
+    $('carousel-main-title').textContent = '40 Tested Resume Templates';
+    $('carousel-main-sub').textContent = 'Sidebars, Canva 50/50, Timelines, Bento & ATS Layouts';
+    $('editor-title').textContent = '✏️ Resume Details & Sections';
+    $('card-auspicious').style.display = 'none';
+    st = getInitialResumeState();
+  } else {
+    $('carousel-main-title').textContent = '25 Tested Indian Biodata Formats';
+    $('carousel-main-sub').textContent = 'Job & Marriage Formats from Pinterest References (Click to Select)';
+    $('editor-title').textContent = '💍 Biodata Details & Sections';
+    $('card-auspicious').style.display = 'block';
+    st = getInitialBiodataState();
+  }
+
+  renderCategoryFilters();
+  renderPersonaChips();
+  renderForms();
+  updateAll();
+  centerActiveCard();
+}
+
+$('slider-prev').onclick = () => {
+  const list = getFilteredTemplatesList();
+  const currentIdx = list.findIndex(x => x.id === st.tpl);
+  st.tpl = (currentIdx > 0) ? list[currentIdx - 1].id : list[list.length - 1].id;
+  updateAll();
+  centerActiveCard();
+};
+$('slider-next').onclick = () => {
+  const list = getFilteredTemplatesList();
+  const currentIdx = list.findIndex(x => x.id === st.tpl);
+  st.tpl = (currentIdx < list.length - 1) ? list[currentIdx + 1].id : list[0].id;
+  updateAll();
+  centerActiveCard();
+};
+
+function centerActiveCard() {
+  const activeCard = document.querySelector(`.card-preview-stage[data-carousel-id="${st.tpl}"]`);
+  if (activeCard) {
+    activeCard.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+  }
+}
+
+$('slider-track').addEventListener('click', ev => {
+  const card = ev.target.closest('.card-preview-stage');
+  if (!card) return;
+  st.tpl = parseInt(card.dataset.carouselId, 10);
+  updateAll();
+  centerActiveCard();
+
+  if (ev.target.dataset.actionPick || ev.target.closest('.use-tpl-overlay')) {
+    $('builder-anchor').scrollIntoView({ behavior: 'smooth' });
+  }
+});
+
+$('tab-edit-mode').onclick = () => {
+  document.body.className = 'view-edit';
+  $('tab-edit-mode').classList.add('active');
+  $('tab-preview-mode').classList.remove('active');
+};
+$('tab-preview-mode').onclick = () => {
+  document.body.className = 'view-preview';
+  $('tab-preview-mode').classList.add('active');
+  $('tab-edit-mode').classList.remove('active');
+  autoFitPaper();
+};
+
+$('photo-input').addEventListener('change', ev => {
+  const file = ev.target.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = () => {
+    st.photo = reader.result;
+    st.photoMode = 'real';
+    $('select-photo-mode').value = 'real';
+    updateAll();
+  };
+  reader.readAsDataURL(file);
+});
+
+$('zoom-in').onclick = () => { currentZoom = Math.min(1.4, currentZoom + 0.1); applyZoom(); };
+$('zoom-out').onclick = () => { currentZoom = Math.max(0.35, currentZoom - 0.1); applyZoom(); };
+$('zoom-fit').onclick = autoFitPaper;
+$('btn-pdf').onclick = $('btn-pdf-2').onclick = () => window.print();
+
+$('btn-save').onclick = () => {
+  const blob = new Blob([JSON.stringify(st, null, 2)], { type: 'application/json' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = `${(st.docTitle || 'document').toLowerCase()}-${Date.now()}.json`;
+  a.click();
+  URL.revokeObjectURL(a.href);
+};
+$('btn-load').onclick = () => $('json-input').click();
+$('json-input').addEventListener('change', ev => {
+  const file = ev.target.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = () => {
+    try {
+      st = JSON.parse(reader.result);
+      renderForms();
+      updateAll();
+    } catch(err) { alert('Invalid JSON file'); }
+  };
+  reader.readAsText(file);
+});
+
+$('btn-rst').onclick = () => {
+  if (confirm('Reset to default profile?')) {
+    st = (appMode === 'resume') ? getInitialResumeState() : getInitialBiodataState();
+    try { localStorage.removeItem(`resumecraft_v8_${appMode}`); } catch(e) {}
+    renderForms();
+    updateAll();
+  }
+};
+
+window.addEventListener('resize', autoFitPaper);
+
+/* BOOT */
+renderCategoryFilters();
+renderPersonaChips();
+renderForms();
+updateAll();
+autoFitPaper();
+setTimeout(centerActiveCard, 150);
+</script>
+</body>
+</html>
