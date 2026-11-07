@@ -60,7 +60,6 @@ main{max-width:1560px;margin:0 auto;padding:10px 20px 24px;display:grid;grid-tem
 .fh input.tt{flex:1;border:0;background:transparent;font-weight:700;padding:4px;min-width:0}
 .fh .mi{color:var(--muted);font-size:19px}
 .fh .drag{cursor:grab;touch-action:none}
-.fb{
 .fb{padding:12px;display:grid;grid-template-columns:1fr 1fr;gap:10px}
 .g{display:flex;flex-direction:column;gap:4px}.full{grid-column:1/-1}
 label{font-size:10.5px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;color:var(--muted)}
@@ -504,7 +503,7 @@ F.addEventListener('click',e=>{const b=e.target.closest('button[data-act]');if(!
 const NEW={text:{t:'New Text',k:'text',v:'Write here...'},lines:{t:'New List',k:'lines',v:'First point\nSecond point'},grid:{t:'New Fields',k:'grid',items:[{l:'Label',v:'Detail'}]},table:{t:'New Table',k:'table',rows:[{course:'',school:'',year:'',marks:''}]},note:{t:'Free Text',k:'text',v:'Your custom text',noT:1}};
 $('b-add').onclick=e=>{e.stopPropagation();let m=$('addmenu');if(m){m.remove();return}m=document.createElement('div');m.id='addmenu';m.className='menu';
  m.innerHTML=[['text','notes','Text paragraph'],['lines','format_list_bulleted','Bullet list'],['grid','view_list','Label : value fields'],['table','table_chart','Table'],['note','text_fields','Free text (no title)']].map(([k,i,n])=>`<button data-n="${k}"><span class="mi">${i}</span>${n}</button>`).join('');
- document.body.appendChild(m);const r=$('b-add').getBoundingClientRect();m.style.top=r.bottom+6+'px';m.style.left=Math.max(8,r.right-220)+'px'};
+ document.body.appendChild(m);const r=$('b-add').getBoundingClientRect();m.style.left=Math.max(8,Math.min(r.right-220,innerWidth-228))+'px';const mh=m.offsetHeight;m.style.top=Math.max(8,(r.bottom+6+mh>innerHeight-8)?r.top-mh-6:r.bottom+6)+'px'};
 document.addEventListener('click',e=>{const m=$('addmenu');if(!m)return;const b=e.target.closest('#addmenu button');
  if(b){const d=JSON.parse(JSON.stringify(NEW[b.dataset.n])),x=sty();if(d.noT){x.noT=true;delete d.noT}d.style=x;const k='sec_'+Date.now();st.sections[k]=d;st.order.push(k);drawForms();upd();F.scrollTop=F.scrollHeight}
  m.remove()});
