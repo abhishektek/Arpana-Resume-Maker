@@ -55,7 +55,7 @@ main{max-width:1560px;margin:0 auto;padding:10px 20px 24px;display:grid;grid-tem
 .ph{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:12px 16px;border-bottom:1px solid var(--line);font-weight:700}
 .ph span.t{display:flex;align-items:center;gap:8px}.ph .mi{color:var(--pri)}
 #forms{padding:14px;max-height:calc(100vh - 220px);overflow:auto;display:flex;flex-direction:column;gap:12px}
-.fc{border:1px solid var(--line);border-radius:12px;background:var(--surface);overflow:hidden}
+.fc{border:1px solid var(--line);border-radius:12px;background:var(--surface);overflow:hidden;flex-shrink:0}
 .fh{display:flex;align-items:center;gap:6px;padding:8px 10px;background:var(--bg);border-bottom:1px solid var(--line);font-weight:700;font-size:13px}
 .fh input.tt{flex:1;border:0;background:transparent;font-weight:700;padding:4px;min-width:0}
 .fh .mi{color:var(--muted);font-size:19px}
@@ -217,7 +217,7 @@ input[type=range]{padding:0;border:0;height:26px;accent-color:var(--pri);backgro
   <section class="panel pv">
     <div class="pvbox">
       <div class="pwrap" id="pwrap"><article class="paper" id="paper"></article></div>
-      <div class="zpill"><span id="pg-info" class="info"></span><span class="zoomval" id="z-val">100%</span><button class="b-icon" id="z-fit" title="Fit page"><span class="mi">fit_screen</span></button></div>
+      <div class="zpill"><span id="pg-info" class="info"></span><button class="b-icon" id="z-out" title="Zoom out"><span class="mi">remove</span></button><span class="zoomval" id="z-val">100%</span><button class="b-icon" id="z-in" title="Zoom in"><span class="mi">add</span></button><button class="b-icon" id="z-fit" title="Fit page"><span class="mi">fit_screen</span></button></div>
       <span id="pv-t" hidden></span>
     </div>
     <button class="b-pri mpdf" id="b-pdf3"><span class="mi">picture_as_pdf</span>Download PDF</button>
@@ -522,11 +522,11 @@ function switchMode(m){if(st.mode===m)return;st=m==='resume'?resumeState():bioSt
 $('m-res').onclick=()=>switchMode('resume');$('m-bio').onclick=()=>switchMode('biodata');
 
 function applyZoom(){$('paper').style.zoom=zoom;$('z-val').textContent=Math.round(zoom*100)+'%'}
-function fit(){const pw=$('pwrap'),w=pw.clientWidth-32,h=pw.clientHeight-48;zoom=Math.max(.25,innerWidth>900?Math.min(1,w/794,h/1123):Math.min(1,w/794));applyZoom()}
-function zoomAt(z,cx,cy){const pw=$('pwrap'),p=$('paper'),r=p.getBoundingClientRect(),px=(cx-r.left)/zoom,py=(cy-r.top)/zoom;zoom=Math.min(3,Math.max(.25,z));applyZoom();
+function fit(){const pw=$('pwrap'),w=pw.clientWidth-32,h=pw.clientHeight-48;const a=Math.min(1,w/794),b=Math.min(a,h/1123);zoom=Math.max(.3,innerWidth>900&&b>=.55?b:a);applyZoom()}
+function zoomAt(z,cx,cy){const pw=$('pwrap'),p=$('paper'),r=p.getBoundingClientRect(),px=(cx-r.left)/zoom,py=(cy-r.top)/zoom;zoom=Math.min(3,Math.max(.3,z));applyZoom();
  const r2=p.getBoundingClientRect(),dx=r2.left+px*zoom-cx,dy=r2.top+py*zoom-cy;pw.scrollLeft+=dx;if(pw.scrollHeight>pw.clientHeight+1)pw.scrollTop+=dy;else scrollBy(0,dy)}
 const PW=$('pwrap');let pd=null,lt=0,pz=0,dg=null;
-PW.addEventListener('wheel',e=>{e.preventDefault();zoomAt(zoom*Math.exp(-e.deltaY*(e.ctrlKey?.01:.0018)),e.clientX,e.clientY)},{passive:false});
+PW.addEventListener('wheel',e=>{if(!(e.ctrlKey||e.metaKey))return;e.preventDefault();zoomAt(zoom*Math.exp(-e.deltaY*(e.ctrlKey?.01:.0018)),e.clientX,e.clientY)},{passive:false});
 const ti=e=>{const a=e.touches[0],b=e.touches[1];return{d:Math.hypot(a.clientX-b.clientX,a.clientY-b.clientY)||1,cx:(a.clientX+b.clientX)/2,cy:(a.clientY+b.clientY)/2}};
 PW.addEventListener('touchstart',e=>{if(e.touches.length===2)pd=ti(e)},{passive:true});
 PW.addEventListener('touchmove',e=>{if(e.touches.length===2&&pd){e.preventDefault();const n=ti(e);zoomAt(zoom*n.d/pd.d,n.cx,n.cy);pd=n;pz=Date.now()}},{passive:false});
@@ -536,6 +536,8 @@ PW.addEventListener('mousedown',e=>{if(e.button!==0)return;dg={x:e.clientX,y:e.c
 addEventListener('mousemove',e=>{if(!dg)return;PW.scrollLeft-=e.clientX-dg.x;PW.scrollTop-=e.clientY-dg.y;dg={x:e.clientX,y:e.clientY}});
 addEventListener('mouseup',()=>{dg=null;PW.classList.remove('grab')});
 $('z-fit').onclick=fit;
+$('z-in').onclick=()=>{const r=PW.getBoundingClientRect();zoomAt(zoom*1.15,r.x+r.width/2,r.y+r.height/2)};
+$('z-out').onclick=()=>{const r=PW.getBoundingClientRect();zoomAt(zoom/1.15,r.x+r.width/2,r.y+r.height/2)};
 $('b-pdf').onclick=$('b-pdf3').onclick=()=>downloadPDF();
 addEventListener('resize',fit);
 
