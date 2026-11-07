@@ -73,6 +73,23 @@ input[type=checkbox]{width:auto}input[type=color]{padding:2px;height:30px;width:
 .sub{border:1px dashed var(--line);border-radius:10px;padding:8px;display:grid;gap:6px}
 .chips{display:flex;gap:8px;flex-wrap:wrap;padding:10px 14px;background:var(--soft);border-bottom:1px solid var(--line)}
 .chips button{background:var(--surface);color:var(--pri);border:1px solid var(--line);padding:6px 10px;font-size:12px}
+.info{display:inline-flex;align-items:center;gap:4px;font-size:12px;font-weight:600;color:#16a34a;margin-right:6px;white-space:nowrap}.info.warn{color:#dc2626}.info .mi{font-size:16px}
+.paper .photo.ph-round,.paper .slot.ph-round{width:100px;height:100px;border-radius:50%}
+.paper .photo.ph-square,.paper .slot.ph-square{width:100px;height:100px;border-radius:2px}
+.paper .photo.ph-rounded,.paper .slot.ph-rounded{width:100px;height:100px;border-radius:18%}
+.paper .photo.ph-passport,.paper .slot.ph-passport{width:88px;height:106px;border-radius:4px}
+.modal{position:fixed;inset:0;z-index:300;background:rgba(2,6,23,.6);display:flex;align-items:center;justify-content:center;padding:16px;backdrop-filter:blur(4px)}
+.modal[hidden]{display:none}
+.mbox{background:var(--surface);border-radius:18px;width:100%;max-width:380px;box-shadow:0 24px 60px rgba(0,0,0,.5);padding:16px;display:flex;flex-direction:column;gap:12px;max-height:94vh;overflow:auto}
+.mh{display:flex;align-items:center;gap:8px;font-weight:700}.mh .mi{color:var(--pri)}.mh .b-icon{margin-left:auto}
+.cwrap{background:repeating-conic-gradient(#e5e7eb 0 25%,#f8fafc 0 50%) 0 0/16px 16px;border-radius:12px;padding:14px;display:grid;place-items:center}
+.cframe{position:relative;overflow:hidden;background:#000;touch-action:none;cursor:grab;box-shadow:0 0 0 3px #fff,0 0 0 4px var(--pri)}
+.cframe img{position:absolute;max-width:none;user-select:none;-webkit-user-drag:none;pointer-events:none}
+.shapes{display:flex;gap:8px}.shapes button{flex:1;min-width:0;padding-left:2px;padding-right:2px;flex-direction:column;gap:2px;font-size:11px;background:var(--bg);color:var(--muted);border:1px solid var(--line);padding:8px 4px}
+.shapes button.on{background:var(--soft);color:var(--pri);border-color:var(--pri)}
+.srow{display:flex;align-items:center;gap:10px;font-size:12px;color:var(--muted)}.srow .mi{color:var(--pri)}.srow span.l{width:58px;font-weight:600}
+input[type=range]{padding:0;border:0;height:26px;accent-color:var(--pri);background:transparent;flex:1}
+.mf{display:flex;gap:8px;justify-content:flex-end}
 .menu{position:fixed;z-index:200;width:220px;background:var(--surface);border:1px solid var(--line);border-radius:12px;box-shadow:var(--shadow);padding:6px;display:flex;flex-direction:column}
 .menu button{background:transparent;color:var(--ink);justify-content:flex-start;padding:10px}.menu button:hover{background:var(--soft)}
 .fh .b-icon.on{background:var(--soft);color:var(--pri)}
@@ -102,11 +119,11 @@ input[type=checkbox]{width:auto}input[type=color]{padding:2px;height:30px;width:
 .grid3 b{text-transform:uppercase;font-size:10.5px}
 .sign{display:flex;justify-content:space-between;align-items:flex-end;margin-top:16px;font-size:10.5px}
 .dongle{margin-top:18px;padding-top:6px;border-top:1px dashed #cbd5e1;font-size:9.5px;color:#64748b;display:flex;justify-content:space-between}
-.sl{display:grid;grid-template-columns:240px 1fr;min-height:1123px}
+.sl{display:grid;grid-template-columns:240px 1fr;min-height:var(--ph,1123px)}
 .sl aside{background:var(--tc);color:#fff;padding:36px 20px}.sl aside *{color:#fff!important;border-color:rgba(255,255,255,.35)!important}
 .sl aside .photo,.sl aside .slot{border-radius:50%;width:92px;height:92px;margin:0 auto 12px;display:grid;border-color:#fff}
 .sl main{display:block;padding:36px 26px;max-width:none;margin:0}
-.sr{display:grid;grid-template-columns:1fr 230px;min-height:1123px}
+.sr{display:grid;grid-template-columns:1fr 230px;min-height:var(--ph,1123px)}
 .sr main{display:block;padding:36px 26px;max-width:none;margin:0}
 .sr aside{background:#f8fafc;border-left:2px solid #e2e8f0;padding:36px 18px}
 .hero .hb{background:var(--tc);padding:30px 44px;display:flex;justify-content:space-between;align-items:center;gap:14px}
@@ -139,7 +156,10 @@ input[type=checkbox]{width:auto}input[type=color]{padding:2px;height:30px;width:
  header,.gallery,.edit,.ph,.nav,.ptool{display:none!important}
  main{display:block;padding:0;margin:0}.panel{border:0;box-shadow:none;border-radius:0}
  .pv{position:static;height:auto}.pwrap{padding:0;background:#fff;overflow:visible}
- .paper{zoom:1!important;box-shadow:none;margin:0}
+ html,body{height:auto!important}
+ .paper{zoom:1!important;box-shadow:none;margin:0;width:210mm!important}
+ .paper.one{height:296mm!important;overflow:hidden!important;page-break-after:avoid;break-inside:avoid}
+ .menu{display:none!important}
 }
 </style>
 </head>
@@ -176,7 +196,7 @@ input[type=checkbox]{width:auto}input[type=color]{padding:2px;height:30px;width:
 
   <section class="panel pv">
     <div class="ph"><span class="t"><span class="mi">visibility</span><span id="pv-t">Preview</span></span>
-      <div class="ptool">
+      <div class="ptool"><span id="pg-info" class="info"></span>
         <button class="b-icon" id="z-out"><span class="mi">zoom_out</span></button>
         <span class="zoomval" id="z-val">100%</span>
         <button class="b-icon" id="z-in"><span class="mi">zoom_in</span></button>
@@ -187,6 +207,16 @@ input[type=checkbox]{width:auto}input[type=color]{padding:2px;height:30px;width:
   </section>
 </main>
 
+<div class="modal" id="cropm" hidden><div class="mbox">
+ <div class="mh"><span class="mi">crop</span>Crop & adjust photo<button class="b-icon" id="cm-x"><span class="mi">close</span></button></div>
+ <div class="cwrap"><div class="cframe" id="cframe"><img id="cimg" alt=""></div></div>
+ <div class="shapes" id="cshapes">
+  <button data-sh="round"><span class="mi">circle</span>Round</button><button data-sh="square"><span class="mi">crop_square</span>Square</button><button data-sh="rounded"><span class="mi">rounded_corner</span>Rounded</button><button data-sh="passport"><span class="mi">crop_portrait</span>Passport</button></div>
+ <div class="srow"><span class="mi">zoom_in</span><span class="l">Zoom</span><input type="range" id="cz" min="1" max="3" step="0.01" value="1"></div>
+ <div class="srow"><span class="mi">swap_horiz</span><span class="l">Left / Right</span><input type="range" id="cx" min="-1" max="1" step="0.01" value="0"></div>
+ <div class="srow"><span class="mi">swap_vert</span><span class="l">Up / Down</span><input type="range" id="cy" min="-1" max="1" step="0.01" value="0"></div>
+ <div class="mf"><button class="b-ghost" id="cm-reset"><span class="mi">restart_alt</span>Reset</button><button class="b-ghost" id="cm-cancel">Cancel</button><button class="b-pri" id="cm-ok"><span class="mi">check</span>Apply</button></div>
+</div></div>
 <nav class="nav" id="nav">
   <button data-v="form" class="on"><span class="mi">edit_note</span>Form</button>
   <button data-v="tpl"><span class="mi">palette</span>Templates</button>
@@ -314,7 +344,8 @@ const H=(k,tag)=>{const s=st.sections[k];if(!s)return'';const x=s.style||{};if(x
 function docHtml(t){
  t=t||curTpl();const h=st.sections.head||{},ord=st.order;
  const top=st.title.trim()?`<div style="text-align:${st.align}"><div class="doct ${st.ul?'u':''}">${esc(st.title)}</div></div>`:'';
- const photo=st.photoMode==='none'?'':st.photo?`<img class="photo" src="${st.photo}" alt="">`:`<div class="slot">${st.photoMode==='slot'?'AFFIX<br>PHOTO':'PROFILE<br>PHOTO'}</div>`;
+ const sh=st.photoShape||(t.e==='sl'?'round':'passport'),pc='ph-'+sh;
+ const photo=st.photoMode==='none'?'':st.photo?`<img class="photo ${pc}" src="${st.photo}" alt="">`:`<div class="slot ${pc}">${st.photoMode==='slot'?'AFFIX<br>PHOTO':'PROFILE<br>PHOTO'}</div>`;
  const dong=st.dong?`<div class="dongle"><span>${esc(st.dTrack)}</span><span>${esc(st.dNote)}</span></div>`:'';
  const contact=`<p class="ct">${ico('call')}${esc(h.phone)}<br>${ico('mail')}${esc(h.email)}<br>${ico('location_on')}${esc(h.location)}</p>`;
  if(st.mode==='biodata')return`<div class="pad">${st.aus.trim()?`<div class="aus">${esc(st.aus)}</div>`:''}<div style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px">${top}${photo}</div>${ord.map(k=>H(k,'band')).join('')}${dong}</div>`;
@@ -326,10 +357,26 @@ function docHtml(t){
  if(t.e==='sp'){const m=Math.ceil(ord.length/2);return`<div class="pad">${top}${hd}<div style="display:grid;grid-template-columns:1fr 1fr;gap:22px"><div>${ord.slice(0,m).map(k=>H(k)).join('')}</div><div>${ord.slice(m).map(k=>H(k)).join('')}</div></div>${dong}</div>`}
  return`<div class="pad x-${t.e}">${top}${hd}${ord.map(k=>H(k)).join('')}${dong}</div>`}
 
+function fitPage(){
+ const p=$('paper'),w=$('pfit');if(!w)return;
+ const z=p.style.zoom;p.style.zoom=1;
+ const on=st.fit!==false,A=1123;
+ const ap=(sc,ph)=>{w.style.cssText=`width:${794/sc}px;transform:scale(${sc});transform-origin:0 0;--ph:${ph}px`};
+ let sc=1,hh=0;
+ for(let i=0;i<5;i++){ap(sc,0);hh=w.offsetHeight*sc;
+  if(!on)break;
+  if(hh>A+.5||(sc<1&&hh<A-5))sc=Math.min(1,Math.max(.5,sc*A/hh));else break}
+ if(!on)sc=1;
+ ap(sc,A/sc);
+ p.classList.toggle('one',on);p.style.height=on?A+'px':'';p.style.overflow=on?'hidden':'';
+ p.style.zoom=z;
+ const bad=on&&hh>A+2;
+ $('pg-info').className='info'+(bad?' warn':'');
+ $('pg-info').innerHTML=!on?`<span class="mi">description</span>Auto-fit off`:bad?`<span class="mi">warning</span>Too long for 1 page`:`<span class="mi">check_circle</span>1 page${sc<.995?' · '+Math.round(sc*100)+'%':''}`}
 function drawPaper(){
  const t=curTpl(),p=$('paper');
  p.className=`paper ${t.b||''} ${st.fs} ${st.sp}`;p.style.setProperty('--tc',t.c);p.style.fontFamily=(st.font==="'Segoe UI',Roboto,sans-serif"&&t.f)?t.f:st.font;
- p.innerHTML=docHtml();$('pv-t').textContent=t.n;fit()}
+ p.innerHTML=`<div id="pfit">${docHtml(t)}</div>`;fitPage();$('pv-t').textContent=t.n;fit()}
 
 /* ---------- GALLERY ---------- */
 let cat='all',gt;
@@ -353,12 +400,14 @@ function drawForms(){
   <div class="g"><label>Document title</label><input id="i-title"></div>
   <div class="g"><label>Alignment</label><select id="s-align"><option value="center">Center</option><option value="left">Left</option><option value="right">Right</option></select></div>
   ${st.mode==='biodata'?`<div class="g full"><label>Auspicious header</label><input id="i-aus" placeholder="|| Om || / 786 / Ik Onkar"></div>`:''}
-  <div class="g full"><label>Upload photo</label><input type="file" id="i-photo" accept="image/*"></div>
+  <div class="g"><label>Photo shape</label><select id="s-shape"><option value="">Auto (by template)</option><option value="round">Round</option><option value="square">Square</option><option value="rounded">Rounded square</option><option value="passport">Passport (portrait)</option></select></div>
+  <div class="row full"><button class="b-ghost" id="b-up"><span class="mi">upload</span>Upload</button><button class="b-ghost" id="b-crop"><span class="mi">crop</span>Crop & adjust</button><button class="b-danger" id="b-rmph" title="Remove photo"><span class="mi">delete</span></button><input type="file" id="i-photo" accept="image/*" hidden></div>
   <div class="row full" style="flex-wrap:wrap;gap:14px;font-size:12.5px">
    <label style="text-transform:none;letter-spacing:0" class="row"><input type="checkbox" id="c-ul"> Title underline</label>
    <label style="text-transform:none;letter-spacing:0" class="row"><input type="checkbox" id="c-yr"> Year column</label>
    <label style="text-transform:none;letter-spacing:0" class="row"><input type="checkbox" id="c-mk"> Marks column</label>
-   <label style="text-transform:none;letter-spacing:0" class="row"><input type="checkbox" id="c-dg"> Tracking footer</label></div>
+   <label style="text-transform:none;letter-spacing:0" class="row"><input type="checkbox" id="c-dg"> Tracking footer</label>
+   <label style="text-transform:none;letter-spacing:0" class="row"><input type="checkbox" id="c-fit"> Auto-fit to 1 page (A4)</label></div>
   <div class="g full" id="dg-box" style="display:none;grid-template-columns:1fr 1fr;gap:8px"><input id="i-dt" placeholder="Reference no."><input id="i-dn" placeholder="Note"></div>
  </div></div>`+
  (st.sections.head?`<div class="fc"><div class="fh"><span class="mi">badge</span>Contact Information</div><div class="fb">
@@ -376,7 +425,7 @@ function drawForms(){
   const fmt=`<div class="fmt">${s.k==='dec'?'':`<span class="mi" style="color:var(--muted)">format_color_text</span><input type="color" data-c="${k}" value="${x.color||'#0f172a'}"><button class="b-icon ${x.bold?'on':''}" data-act="bold" data-k="${k}"><span class="mi">format_bold</span></button><button class="b-icon ${x.italic?'on':''}" data-act="italic" data-k="${k}"><span class="mi">format_italic</span></button><span style="width:1px;height:18px;background:var(--line)"></span>`}${al('left','format_align_left')}${al('center','format_align_center')}${al('right','format_align_right')}<span style="width:1px;height:18px;background:var(--line)"></span><button class="b-icon ${x.noT?'on':''}" data-act="noT" data-k="${k}" title="Hide section title"><span class="mi">title</span></button></div>`;
   return`<div class="fc" draggable="true" data-dk="${k}"><div class="fh"><span class="mi drag">drag_indicator</span><input class="tt" data-r="${k}" value="${esc(s.t)}"><button class="b-icon" data-act="up" data-k="${k}"><span class="mi">arrow_upward</span></button><button class="b-icon" data-act="dn" data-k="${k}"><span class="mi">arrow_downward</span></button><button class="b-icon ${x.hide?'on':''}" data-act="hide" data-k="${k}" title="Show / hide layer"><span class="mi">${x.hide?'visibility_off':'visibility'}</span></button><button class="b-icon" data-act="dup" data-k="${k}" title="Duplicate section"><span class="mi">content_copy</span></button><button class="b-icon" data-act="del" data-k="${k}"><span class="mi">delete</span></button></div>${fmt}<div class="fb">${b}</div></div>`}).join('');
  $('s-font').value=st.font;$('s-fs').value=st.fs;$('s-sp').value=st.sp;$('s-photo').value=st.photoMode;$('i-title').value=st.title;$('s-align').value=st.align;
- $('c-ul').checked=st.ul;$('c-yr').checked=st.yr;$('c-mk').checked=st.mk;$('c-dg').checked=st.dong;$('dg-box').style.display=st.dong?'grid':'none';$('i-dt').value=st.dTrack;$('i-dn').value=st.dNote;
+ $('c-ul').checked=st.ul;$('c-yr').checked=st.yr;$('c-mk').checked=st.mk;$('c-dg').checked=st.dong;$('s-shape').value=st.photoShape||'';$('c-fit').checked=st.fit!==false;$('dg-box').style.display=st.dong?'grid':'none';$('i-dt').value=st.dTrack;$('i-dn').value=st.dNote;
  if($('i-aus'))$('i-aus').value=st.aus;
  bindDrag()}
 
@@ -409,8 +458,10 @@ F.addEventListener('input',e=>{const el=e.target,d=el.dataset;
 F.addEventListener('change',e=>{const id=e.target.id,v=e.target.value,ck=e.target.checked;if(e.target.dataset.ha!==undefined){st.sections.head.align=v;upd();return}
  if(id==='s-font')st.font=v;else if(id==='s-fs')st.fs=v;else if(id==='s-sp')st.sp=v;else if(id==='s-photo')st.photoMode=v;else if(id==='s-align')st.align=v;
  else if(id==='c-ul')st.ul=ck;else if(id==='c-yr'){st.yr=ck;drawForms()}else if(id==='c-mk'){st.mk=ck;drawForms()}
+ else if(id==='c-fit')st.fit=ck;
  else if(id==='c-dg'){st.dong=ck;$('dg-box').style.display=ck?'grid':'none'}
- else if(id==='i-photo'){const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{st.photo=r.result;st.photoMode='real';$('s-photo').value='real';upd()};r.readAsDataURL(f);return}
+ else if(id==='s-shape'){st.photoShape=v;recrop();return}
+ else if(id==='i-photo'){loadPhoto(e.target.files[0]);e.target.value='';return}
  else return;
  upd()});
 F.addEventListener('click',e=>{const b=e.target.closest('button[data-act]');if(!b)return;const a=b.dataset.act,k=b.dataset.k,i=+b.dataset.i,o=st.order,ix=o.indexOf(k);const S=()=>{const q=st.sections[k];q.style=q.style||sty();return q.style};
@@ -437,7 +488,7 @@ document.addEventListener('click',e=>{const m=$('addmenu');if(!m)return;const b=
  if(b){const d=JSON.parse(JSON.stringify(NEW[b.dataset.n])),x=sty();if(d.noT){x.noT=true;delete d.noT}d.style=x;const k='sec_'+Date.now();st.sections[k]=d;st.order.push(k);drawForms();upd();F.scrollTop=F.scrollHeight}
  m.remove()});
 
-$('tracks').addEventListener('click',e=>{const c=e.target.closest('.tcard');if(!c)return;st.tpl=+c.dataset.id;drawPaper();drawGallery();
+$('tracks').addEventListener('click',e=>{const c=e.target.closest('.tcard');if(!c)return;st.tpl=+c.dataset.id;if(st.photoRaw&&!st.photoShape)recrop();drawPaper();drawGallery();
  if(e.target.closest('[data-use]')){innerWidth<=900?setView('prev'):$('forms').scrollIntoView({behavior:'smooth',block:'start'})}});
 $('cats').addEventListener('click',e=>{const b=e.target.closest('.pill');if(!b)return;cat=b.dataset.cat;drawGallery()});
 
@@ -468,7 +519,41 @@ $('b-rst').onclick=()=>{if(confirm('Reset to default sample?')){st=st.mode==='re
 function setView(v){document.body.className='v-'+v;document.querySelectorAll('#nav button').forEach(b=>b.classList.toggle('on',b.dataset.v===v));if(v==='prev')setTimeout(fit,80)}
 $('nav').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;b.dataset.v==='pdf'?print():setView(b.dataset.v)});
 
+/* ---------- PHOTO CROP ---------- */
+const CR={img:null,z:1,x:0,y:0,sh:'passport'};
+const DIM=sh=>sh==='passport'?[400,480]:[400,400];
+const RAD={round:'50%',square:'2px',rounded:'18%',passport:'4px'};
+const shapeNow=()=>st.photoShape||(curTpl().e==='sl'?'round':'passport');
+function lay(img,c,W,H){const nw=img.naturalWidth,nh=img.naturalHeight,k=Math.max(W/nw,H/nh)*c.z,dw=nw*k,dh=nh*k;return{dw,dh,l:(W-dw)/2+c.x*(dw-W)/2,t:(H-dh)/2+c.y*(dh-H)/2}}
+function renderCrop(img,sh,c){const [W,H]=DIM(sh),cv=document.createElement('canvas');cv.width=W;cv.height=H;const x=cv.getContext('2d'),L=lay(img,c,W,H);x.fillStyle='#fff';x.fillRect(0,0,W,H);x.drawImage(img,L.l,L.t,L.dw,L.dh);return cv.toDataURL('image/jpeg',.92)}
+function withRaw(fn){if(!st.photoRaw)return;const i=new Image();i.onload=()=>fn(i);i.src=st.photoRaw}
+function recrop(){if(!st.photoRaw){upd();return}withRaw(i=>{st.photo=renderCrop(i,shapeNow(),st.photoCrop||{z:1,x:0,y:0});upd()})}
+function loadPhoto(f){if(!f)return;const r=new FileReader();r.onload=()=>{const i=new Image();i.onload=()=>{const m=Math.min(1,1000/Math.max(i.naturalWidth,i.naturalHeight)),cv=document.createElement('canvas');cv.width=Math.round(i.naturalWidth*m);cv.height=Math.round(i.naturalHeight*m);cv.getContext('2d').drawImage(i,0,0,cv.width,cv.height);
+ st.photoRaw=cv.toDataURL('image/jpeg',.9);st.photoCrop={z:1,x:0,y:0};st.photoMode='real';$('s-photo').value='real';withRaw(im=>{st.photo=renderCrop(im,shapeNow(),st.photoCrop);upd();openCrop()})};i.src=r.result};r.readAsDataURL(f)}
+function cSync(){$('cz').value=CR.z;$('cx').value=CR.x;$('cy').value=CR.y;document.querySelectorAll('#cshapes button').forEach(b=>b.classList.toggle('on',b.dataset.sh===CR.sh));
+ const [w,h]=DIM(CR.sh),Wf=240,Hf=Wf*h/w,f=$('cframe'),L=lay(CR.img,CR,Wf,Hf),im=$('cimg');f.style.width=Wf+'px';f.style.height=Hf+'px';f.style.borderRadius=RAD[CR.sh];
+ Object.assign(im.style,{width:L.dw+'px',height:L.dh+'px',left:L.l+'px',top:L.t+'px'})}
+function openCrop(){withRaw(i=>{CR.img=i;const c=st.photoCrop||{z:1,x:0,y:0};CR.z=c.z;CR.x=c.x;CR.y=c.y;CR.sh=shapeNow();$('cimg').src=st.photoRaw;$('cropm').hidden=false;cSync()})}
+const clamp=(v,a,b)=>Math.min(b,Math.max(a,v));
+$('cz').oninput=e=>{CR.z=+e.target.value;cSync()};$('cx').oninput=e=>{CR.x=+e.target.value;cSync()};$('cy').oninput=e=>{CR.y=+e.target.value;cSync()};
+$('cshapes').onclick=e=>{const b=e.target.closest('button');if(!b)return;CR.sh=b.dataset.sh;cSync()};
+$('cm-reset').onclick=()=>{CR.z=1;CR.x=0;CR.y=0;cSync()};
+$('cm-cancel').onclick=$('cm-x').onclick=()=>{$('cropm').hidden=true};
+$('cropm').addEventListener('click',e=>{if(e.target.id==='cropm')$('cropm').hidden=true});
+$('cm-ok').onclick=()=>{st.photoShape=CR.sh;st.photoCrop={z:CR.z,x:CR.x,y:CR.y};st.photo=renderCrop(CR.img,CR.sh,st.photoCrop);st.photoMode='real';$('s-shape').value=CR.sh;$('s-photo').value='real';$('cropm').hidden=true;upd()};
+let dr=null;
+$('cframe').addEventListener('pointerdown',e=>{dr={x:e.clientX,y:e.clientY};e.currentTarget.setPointerCapture(e.pointerId)});
+$('cframe').addEventListener('pointermove',e=>{if(!dr)return;const [w,h]=DIM(CR.sh),Wf=240,Hf=Wf*h/w,L=lay(CR.img,CR,Wf,Hf),ox=(L.dw-Wf)/2,oy=(L.dh-Hf)/2;
+ if(ox>1)CR.x=clamp(CR.x+(e.clientX-dr.x)/ox,-1,1);if(oy>1)CR.y=clamp(CR.y+(e.clientY-dr.y)/oy,-1,1);dr={x:e.clientX,y:e.clientY};cSync()});
+$('cframe').addEventListener('pointerup',()=>{dr=null});
+F.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;
+ if(b.id==='b-up')$('i-photo').click();
+ else if(b.id==='b-crop'){st.photoRaw?openCrop():$('i-photo').click()}
+ else if(b.id==='b-rmph'){st.photo='';st.photoRaw='';st.photoCrop=null;upd()}});
+
 chips();drawForms();upd();setTimeout(fit,200);
+addEventListener('beforeprint',fitPage);
+if(document.fonts&&document.fonts.ready)document.fonts.ready.then(()=>{fitPage();fit()});
 </script>
 </body>
 </html>
