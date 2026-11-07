@@ -32,7 +32,7 @@ header{position:sticky;top:0;z-index:50;display:flex;align-items:center;justify-
 .gallery{padding:16px 20px 6px;max-width:1560px;margin:0 auto}
 .gal-h{display:flex;align-items:center;gap:8px;font-weight:700;margin-bottom:10px}
 .gal-h .mi{color:var(--pri)}
-.tracks{display:flex;gap:12px;overflow-x:auto;padding:4px 2px 12px;scroll-snap-type:x proximity}
+.tracks{position:relative;display:flex;gap:12px;overflow-x:auto;padding:4px 2px 12px;scroll-snap-type:x proximity}
 .tcard{flex:0 0 240px;scroll-snap-align:center;background:var(--surface);border:2px solid var(--line);border-radius:14px;padding:8px;cursor:pointer;transition:.15s}
 .tcard:hover{transform:translateY(-2px);box-shadow:var(--shadow)}
 .tcard.on{border-color:var(--pri);box-shadow:0 0 0 3px var(--soft)}
@@ -395,17 +395,17 @@ function fitPage(){
 function drawPaper(){
  const t=curTpl(),p=$('paper');
  p.className=`paper ${t.b||''} ${st.fs} ${st.sp}`;p.style.setProperty('--tc',t.c);p.style.setProperty('--tcl',tint(t.c));p.style.fontFamily=(st.font==="'Segoe UI',Roboto,sans-serif"&&t.f)?t.f:st.font;
- p.innerHTML=`<div id="pfit">${docHtml(t)}</div>`;fitPage();$('pv-t').textContent=t.n;fit()}
+ p.innerHTML=`<div id="pfit">${docHtml(t)}</div>`;fitPage();$('pv-t').textContent=t.n;applyZoom()}
 
 /* ---------- GALLERY ---------- */
 let cat='all',gt;
 const CATS={resume:[['all','All (40)'],['sidebar','Sidebars'],['creative','Canva & Timeline'],['ats','ATS Clean'],['fresher','Freshers'],['classic','Classic']],biodata:[['all','All (25)'],['official','Official & Job'],['marriage','Marriage'],['religious','Religious'],['family','Family'],['modern','Modern']]};
-function drawGallery(){
+function drawGallery(center){const T=$('tracks'),sl0=T.scrollLeft;
  const L=list().filter(t=>cat==='all'||t.cat===cat);
  $('cats').innerHTML=CATS[st.mode].map(([k,n])=>`<button class="pill ${k===cat?'on':''}" data-cat="${k}">${n}</button>`).join('');
  $('tracks').innerHTML=L.map(t=>`<div class="tcard ${t.id===st.tpl?'on':''}" data-id="${t.id}"><div class="thumb"><div class="paper mini ${t.b||''}" style="--tc:${t.c};--tcl:${tint(t.c)};${t.f?`font-family:${t.f}`:''}">${docHtml(t)}</div><button class="b-pri use" data-use="1"><span class="mi">check_circle</span>Use this template</button></div><div class="tname">${t.n}</div><div class="tmeta">${t.m}</div></div>`).join('');
  $('gal-t').textContent=st.mode==='resume'?`${RT.length} Resume Templates · live preview`:`${BT.length} Biodata Templates · live preview`;
- const a=document.querySelector('.tcard.on');if(a)a.scrollIntoView({inline:'center',block:'nearest'})}
+ const a=T.querySelector('.tcard.on');T.scrollLeft=(center&&a)?Math.max(0,a.offsetLeft-(T.clientWidth-a.offsetWidth)/2):sl0}
 
 /* ---------- FORMS ---------- */
 const inp=(a,v,ph,cls)=>`<input ${a} value="${esc(v)}" placeholder="${ph||''}" ${cls?`class="${cls}"`:''}>`;
@@ -459,7 +459,7 @@ function chips(){
  :`<button data-p="b1"><span class="mi">gavel</span>Job biodata</button><button data-p="b2"><span class="mi">favorite</span>Marriage biodata</button>`;
  $('ed-t').textContent=st.mode==='resume'?'Resume Details':'Biodata Details'}
 
-function upd(){drawPaper();clearTimeout(gt);gt=setTimeout(drawGallery,300);try{localStorage.setItem('arpana_'+st.mode,JSON.stringify(st))}catch(e){}}
+function upd(){drawPaper();clearTimeout(gt);gt=setTimeout(drawGallery,300);clearTimeout(upd.t);upd.t=setTimeout(()=>{try{localStorage.setItem('arpana_'+st.mode,JSON.stringify(st))}catch(e){}},500)}
 
 /* ---------- EVENTS ---------- */
 const F=$('forms');
@@ -507,7 +507,7 @@ document.addEventListener('click',e=>{const m=$('addmenu');if(!m)return;const b=
  if(b){const d=JSON.parse(JSON.stringify(NEW[b.dataset.n])),x=sty();if(d.noT){x.noT=true;delete d.noT}d.style=x;const k='sec_'+Date.now();st.sections[k]=d;st.order.push(k);drawForms();upd();F.scrollTop=F.scrollHeight}
  m.remove()});
 
-$('tracks').addEventListener('click',e=>{const c=e.target.closest('.tcard');if(!c)return;st.tpl=+c.dataset.id;if(st.photoRaw&&!st.photoShape)recrop();drawPaper();drawGallery();
+$('tracks').addEventListener('click',e=>{const c=e.target.closest('.tcard');if(!c)return;st.tpl=+c.dataset.id;if(st.photoRaw&&!st.photoShape)recrop();drawPaper();drawGallery(true);
  if(e.target.closest('[data-use]')){innerWidth<=900?setView('prev'):$('forms').scrollIntoView({behavior:'smooth',block:'start'})}});
 $('cats').addEventListener('click',e=>{const b=e.target.closest('.pill');if(!b)return;cat=b.dataset.cat;drawGallery()});
 
