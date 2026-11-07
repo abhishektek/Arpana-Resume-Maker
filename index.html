@@ -59,7 +59,8 @@ main{max-width:1560px;margin:0 auto;padding:10px 20px 24px;display:grid;grid-tem
 .fh{display:flex;align-items:center;gap:6px;padding:8px 10px;background:var(--bg);border-bottom:1px solid var(--line);font-weight:700;font-size:13px}
 .fh input.tt{flex:1;border:0;background:transparent;font-weight:700;padding:4px;min-width:0}
 .fh .mi{color:var(--muted);font-size:19px}
-.fh .drag{cursor:grab}
+.fh .drag{cursor:grab;touch-action:none}
+.fb{
 .fb{padding:12px;display:grid;grid-template-columns:1fr 1fr;gap:10px}
 .g{display:flex;flex-direction:column;gap:4px}.full{grid-column:1/-1}
 label{font-size:10.5px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;color:var(--muted)}
@@ -442,7 +443,7 @@ function drawForms(){
   if(s.k==='dec')b=`<div class="g full"><label>Declaration</label><textarea data-d="${k}" data-f="text">${esc(s.text)}</textarea></div><div class="g"><label>Place</label>${inp(`data-d="${k}" data-f="place"`,s.place)}</div><div class="g"><label>Date</label>${inp(`data-d="${k}" data-f="date"`,s.date)}</div>`;
   const al=(v,i)=>`<button class="b-icon ${(x.align||'')===v?'on':''}" data-act="align" data-v="${v}" data-k="${k}" title="Align ${v}"><span class="mi">${i}</span></button>`;
   const fmt=`<div class="fmt">${s.k==='dec'?'':`<span class="mi" style="color:var(--muted)">format_color_text</span><input type="color" data-c="${k}" value="${x.color||'#0f172a'}"><button class="b-icon ${x.bold?'on':''}" data-act="bold" data-k="${k}"><span class="mi">format_bold</span></button><button class="b-icon ${x.italic?'on':''}" data-act="italic" data-k="${k}"><span class="mi">format_italic</span></button><span style="width:1px;height:18px;background:var(--line)"></span>`}${al('left','format_align_left')}${al('center','format_align_center')}${al('right','format_align_right')}<span style="width:1px;height:18px;background:var(--line)"></span><button class="b-icon ${x.noT?'on':''}" data-act="noT" data-k="${k}" title="Hide section title"><span class="mi">title</span></button></div>`;
-  return`<div class="fc" draggable="true" data-dk="${k}"><div class="fh"><span class="mi drag">drag_indicator</span><input class="tt" data-r="${k}" value="${esc(s.t)}"><button class="b-icon" data-act="up" data-k="${k}"><span class="mi">arrow_upward</span></button><button class="b-icon" data-act="dn" data-k="${k}"><span class="mi">arrow_downward</span></button><button class="b-icon ${x.hide?'on':''}" data-act="hide" data-k="${k}" title="Show / hide layer"><span class="mi">${x.hide?'visibility_off':'visibility'}</span></button><button class="b-icon" data-act="dup" data-k="${k}" title="Duplicate section"><span class="mi">content_copy</span></button><button class="b-icon" data-act="del" data-k="${k}"><span class="mi">delete</span></button></div>${fmt}<div class="fb">${b}</div></div>`}).join('');
+  return`<div class="fc" data-dk="${k}"><div class="fh"><span class="mi drag">drag_indicator</span><input class="tt" data-r="${k}" value="${esc(s.t)}"><button class="b-icon" data-act="up" data-k="${k}"><span class="mi">arrow_upward</span></button><button class="b-icon" data-act="dn" data-k="${k}"><span class="mi">arrow_downward</span></button><button class="b-icon ${x.hide?'on':''}" data-act="hide" data-k="${k}" title="Show / hide layer"><span class="mi">${x.hide?'visibility_off':'visibility'}</span></button><button class="b-icon" data-act="dup" data-k="${k}" title="Duplicate section"><span class="mi">content_copy</span></button><button class="b-icon" data-act="del" data-k="${k}"><span class="mi">delete</span></button></div>${fmt}<div class="fb">${b}</div></div>`}).join('');
  $('s-font').value=st.font;$('s-fs').value=st.fs;$('s-sp').value=st.sp;$('s-photo').value=st.photoMode;$('i-title').value=st.title;$('s-align').value=st.align;
  $('c-ul').checked=st.ul;$('c-yr').checked=st.yr;$('c-mk').checked=st.mk;$('c-dg').checked=st.dong;$('s-shape').value=st.photoShape||'';$('c-fit').checked=st.fit!==false;$('dg-box').style.display=st.dong?'grid':'none';$('i-dt').value=st.dTrack;$('i-dn').value=st.dNote;
  if($('i-aus'))$('i-aus').value=st.aus;
@@ -450,7 +451,8 @@ function drawForms(){
 
 let drag=null;
 function bindDrag(){document.querySelectorAll('[data-dk]').forEach(c=>{
- c.ondragstart=()=>{drag=c.dataset.dk;c.style.opacity=.4};c.ondragend=()=>{c.style.opacity=1};c.ondragover=e=>e.preventDefault();
+ const h=c.querySelector('.drag');if(h){h.addEventListener('mousedown',()=>{c.draggable=true});c.addEventListener('mouseup',()=>{c.draggable=false})}
+ c.ondragstart=()=>{drag=c.dataset.dk;c.style.opacity=.4};c.ondragend=()=>{c.style.opacity=1;c.draggable=false;drag=null};c.ondragover=e=>e.preventDefault();
  c.ondrop=e=>{e.preventDefault();const to=c.dataset.dk;if(drag&&drag!==to){const a=st.order.indexOf(drag),b=st.order.indexOf(to);st.order.splice(a,1);st.order.splice(b,0,drag);drawForms();upd()}}})}
 
 function chips(){
